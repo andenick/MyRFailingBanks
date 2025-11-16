@@ -57,7 +57,7 @@ install.packages(c(
 ```
 
 ### Data Files
-- IPUMS Census microdata (1850-2000)
+- OCC bank call reports (1863-1947 historical, 1959-2023 modern)
 - OCC bank financial statements (1863-2023)
 - FDIC failed bank lists
 - Historical deposit data
@@ -78,11 +78,11 @@ cd FailingBanks_Perfect_Replication_v7.0
 
 2. **Prepare data** (Scripts 01-08)
 ```r
-# Load IPUMS data
-source("code/01d_load_ipums_combined_weighted.R")
+# Import macroeconomic data
+source("code/01_import_GDP.R")
 
 # Process bank data
-source("code/02_load_vehicles_data.R")
+source("code/02_import_GFD_CPI.R")
 # ... continue through Script 08
 ```
 
@@ -264,7 +264,7 @@ For questions about the original Stata analysis:
 
 - Original Stata qje-repkit authors
 - R package developers (dplyr, pROC, haven, etc.)
-- IPUMS for census microdata
+- Global Financial Data for historical macro data
 - OCC and FDIC for banking data
 
 ---

@@ -82,8 +82,8 @@ Fixed: November 15, 2025 at 21:49
 ## SCRIPT STATUS SUMMARY
 
 ### Data Preparation (100% ✅)
-- Script 01a: Load IPUMS 5% sample ✅
-- Script 01b: Load IPUMS 1% sample ✅
+- Script 01: Import GDP data ✅
+- Script 02: Import CPI inflation ✅
 - Script 01c: Load mixed unweighted ✅
 - Script 01d: Load combined weighted ✅
 - Script 02-08: Merge and clean data ✅

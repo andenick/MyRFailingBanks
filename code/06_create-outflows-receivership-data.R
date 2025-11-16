@@ -127,12 +127,24 @@ receiverships_merged <- left_join(receiverships_all, fixed_dates_corrected, by =
 
 # --- Merge call data and receivership data ---
 message("Merging call data with receivership data...")
+cat(sprintf("  receiverships_merged N = %d\n", nrow(receiverships_merged)))
+cat(sprintf("  calls_temp N = %d\n", nrow(calls_temp)))
 
-# Replicates `merge 1:1 charter i using "calls_temp"`
-# and `drop if _merge == 2`
-hist_outflows <- inner_join(receiverships_merged, calls_temp, by = c("charter", "i")) %>%
+# Replicates `merge 1:1 charter i using "`calls'"`
+# The Stata merge keeps _merge==1 (master only) and _merge==3 (both)
+# and drops _merge==2 (using only)
+# This is equivalent to a left_join in R (keep all master records)
+receivership_dataset_tmp <- left_join(receiverships_merged, calls_temp, by = c("charter", "i"))
 
-  # Replicates `drop if mi(charter)` (which inner_join does by default)
+# Save receivership_dataset_tmp (replicates Stata line 113)
+message("Saving receivership_dataset_tmp...")
+cat(sprintf("  N = %d observations\n", nrow(receivership_dataset_tmp)))
+saveRDS(receivership_dataset_tmp, file.path(tempfiles_dir, "receivership_dataset_tmp.rds"))
+write_dta(receivership_dataset_tmp, file.path(tempfiles_dir, "receivership_dataset_tmp.dta"))
+
+# Now calculate growth rates
+# Replicates `drop if mi(charter)` (which inner_join does by default)
+hist_outflows <- receivership_dataset_tmp %>%
 
   # Calculate growth rates
   mutate(
