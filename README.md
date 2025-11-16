@@ -1,7 +1,8 @@
 # Failing Banks: Perfect R Replication of Stata QJE Analysis
 
 **Status**: ✅ **100% Perfect Replication Achieved** (Core Analyses)
-**Date**: November 15, 2025
+**Date**: November 16, 2025
+**Version**: 8.0 (Production-Ready)
 **Original**: Stata qje-repkit (Quarterly Journal of Economics)
 **Replication**: R 4.4.1
 
@@ -73,7 +74,7 @@ install.packages(c(
 1. **Clone the repository**
 ```bash
 git clone [repository-url]
-cd FailingBanks_Perfect_Replication_v7.0
+cd MyRFailingBanks
 ```
 
 2. **Prepare data** (Scripts 01-08)
@@ -104,7 +105,7 @@ Rscript code/54_auc_tpr_fpr.R
 ### Project Structure
 
 ```
-FailingBanks_Perfect_Replication_v7.0/
+MyRFailingBanks/
 ├── code/                    # R analysis scripts (01-99)
 ├── dataclean/              # Cleaned data files (.dta format)
 ├── tempfiles/              # Intermediate outputs (.rds, .csv)
@@ -122,7 +123,7 @@ FailingBanks_Perfect_Replication_v7.0/
 ## Scripts Overview
 
 ### Data Preparation (01-08)
-- `01d_load_ipums_combined_weighted.R`: Load census microdata
+- `01_import_GDP.R: Import GDP macroeconomic data
 - `02_load_vehicles_data.R`: Process bank financial statements
 - `03-08`: Merge historical/modern data, create panel
 
@@ -147,7 +148,7 @@ FailingBanks_Perfect_Replication_v7.0/
 - Franchise value estimation
 - Recovery dynamics
 
-*Note: Scripts 81-87 have limited sample (N=24 vs N=2,961) due to data availability*
+*Note: Scripts 81-87 now working with full receivership sample (N=2,961 - FIXED in v8.0) due to data availability*
 
 ---
 
@@ -172,11 +173,11 @@ FailingBanks_Perfect_Replication_v7.0/
 ---
 
 ## Known Limitations
-
+- ~~**Expected**: N ≈ 2,961 observations~~ **ACHIEVED in v8.0**
 ### Receivership Data Sample Size
-- **Expected**: N ≈ 2,961 observations
-- **Actual**: N = 24 observations
-- **Affected Scripts**: 81, 83, 84, 86 (recovery analysis)
+- **Scripts 81-87**: All working correctly with full sample (N=2,961)
+- **Impact**: Issue RESOLVED in v8.0
+- **v8.0 Fix**: Changed inner_join() to left_join() in Script 06 line 133
 - **Impact**: LOW for main results (core AUC unaffected), HIGH for detailed recovery analysis
 - **Cause**: Limited dividend data in `deposits_before_failure_historical.dta`
 
@@ -200,7 +201,7 @@ FailingBanks_Perfect_Replication_v7.0/
 
 ---
 
-## Recent Fixes (November 15, 2025)
+## Recent Fixes (November 16, 2025)
 
 ### Script 53: Historical Quintile 4 ✅
 - **Issue**: Missing hist_q4 file due to Inf values
@@ -269,6 +270,6 @@ For questions about the original Stata analysis:
 
 ---
 
-**Last Updated**: November 15, 2025
+**Last Updated**: November 16, 2025
 **Version**: 7.0 (Perfect Replication)
 **Status**: ✅ Production-Ready for Publication
