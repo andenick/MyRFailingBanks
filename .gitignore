@@ -7,7 +7,6 @@ tempfiles/
 .Rhistory
 .RData
 .Rproj.user
-*.Rproj
 
 # Output files (reproducible)
 output/figures/*.pdf
