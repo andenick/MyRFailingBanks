@@ -1,0 +1,22 @@
+# Large data files
+sources/
+dataclean/
+tempfiles/
+
+# R artifacts
+.Rhistory
+.RData
+.Rproj.user
+*.Rproj
+
+# Output files (reproducible)
+output/figures/*.pdf
+output/tables/*.tex
+
+# Logs
+logs/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
