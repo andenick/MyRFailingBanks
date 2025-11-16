@@ -1,0 +1,25 @@
+# Large data files - DO NOT COMMIT
+sources/
+dataclean/
+tempfiles/
+output/
+
+# R generated files
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# Test and temporary files
+test_*.R
+test_*.log
+*.log
+diagnose_*.R
+fix_*.py
+apply_*.py
+temp_*.txt
+*.backup*
+
+# Session files
+SESSION_*.md
+HANDOFF_*.md
