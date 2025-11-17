@@ -1,5 +1,40 @@
 # Changelog: Version History
 
+## v10.1 (November 17, 2025) - CURRENT
+
+**Status**: ✅ EXPANDED VISUALIZATION LIBRARY
+
+**New Additions**:
+- ✨ **6 additional recovery & analysis visualizations** (scripts 07-18)
+  - Recovery rate distributions across 6 historical eras
+  - Asset quality vs recovery outcomes correlation analysis
+  - Recovery rates by bank size quintiles
+  - Solvency ratio vs depositor recovery relationships
+  - Funding structure evolution over 160 years  
+  - Great Depression asset composition comparison
+- 📊 **Total visualizations: 20 PNG images** (14 original + 6 new)
+- 📝 **15 new R scripts** in `code_expansion/` (07-21)
+  - 6 fully functional and tested
+  - 9 require additional data variables (documented for future work)
+
+**Visualization Categories**:
+1. **Recovery Analysis** (3 new): Distribution, quality correlation, size effects
+2. **Bank Fundamentals** (2 new): Funding evolution, solvency analysis
+3. **Period-Specific** (1 new): Great Depression asset composition
+
+**Scripts Status**:
+- ✅ **Working (6)**: 07, 08, 09, 11, 14, 18
+- ⏸️ **Pending data fixes (9)**: 10, 12, 13, 15, 16, 17, 19, 20, 21
+  - Require: receivership_length, income_ratio, npl_ratio, failed variable
+
+**Technical Notes**:
+- All working scripts generate 300 DPI print-ready PNG images
+- Visualizations use consistent color schemes and professional styling
+- Scripts tested individually and outputs verified
+
+---
+
+## v10.0 (November 17, 2025)
 ## v10.0 (November 17, 2025) - CURRENT
 
 **Status**: ✅ CERTIFIED PRODUCTION-READY WITH PRESENTATION MATERIALS

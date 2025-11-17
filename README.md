@@ -1,8 +1,8 @@
 # Failing Banks: R Replication of Stata QJE Baseline
 
-**Version**: 10.0
+**Version**: 10.1
 **Date**: November 17, 2025
-**Status**: ✅ **100% Perfect Replication Certified + Presentation Materials**
+**Status**: ✅ **100% Perfect Replication + 20 Visualizations**
 
 ---
 
