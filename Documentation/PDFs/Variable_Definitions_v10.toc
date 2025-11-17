@@ -1,0 +1,25 @@
+\contentsline {section}{\numberline {1}Overview}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Naming Conventions}{2}{subsection.1.1}%
+\contentsline {section}{\numberline {2}Identification Variables}{2}{section.2}%
+\contentsline {section}{\numberline {3}Failure Variables}{2}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Core Failure Indicators}{2}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Horizon-Specific Failure Indicators}{3}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Balance Sheet Variables}{3}{section.4}%
+\contentsline {section}{\numberline {5}Financial Ratios}{4}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Key Risk Measures}{4}{subsection.5.1}%
+\contentsline {section}{\numberline {6}Growth Variables}{5}{section.6}%
+\contentsline {section}{\numberline {7}Lagged Variables}{5}{section.7}%
+\contentsline {section}{\numberline {8}Bank Run Variables}{6}{section.8}%
+\contentsline {section}{\numberline {9}Receivership Variables}{6}{section.9}%
+\contentsline {section}{\numberline {10}Macro Variables}{7}{section.10}%
+\contentsline {section}{\numberline {11}Variable Creation Scripts}{7}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Script Reference}{7}{subsection.11.1}%
+\contentsline {section}{\numberline {12}Key Variable Notes}{8}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Most Important Variables}{8}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}Era Differences}{8}{subsection.12.2}%
+\contentsline {subsection}{\numberline {12.3}Missing Data Patterns}{8}{subsection.12.3}%
+\contentsline {section}{\numberline {13}Summary Statistics}{9}{section.13}%
+\contentsline {subsection}{\numberline {13.1}Dataset Overview}{9}{subsection.13.1}%
+\contentsline {subsection}{\numberline {13.2}Key Variable Ranges}{9}{subsection.13.2}%
+\contentsline {section}{\numberline {14}Conclusion}{9}{section.14}%
+\contentsline {subsection}{\numberline {14.1}Additional Resources}{9}{subsection.14.1}%

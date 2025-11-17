@@ -1,0 +1,460 @@
+\documentclass[11pt,letterpaper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{listings}
+
+% Setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Variable Definitions - Failing Banks},
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Failing Banks Replication}
+\lhead{Variable Definitions}
+\rfoot{Page \thepage}
+
+% Title
+\title{\textbf{Failing Banks R Replication}\\[0.5em]\Large Variable Definitions}
+\author{Data Dictionary}
+\date{October 22, 2025}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Overview}
+
+This document provides comprehensive definitions for all 70+ variables used in the Failing Banks R replication package. Variables are organized by category for easy reference.
+
+\subsection{Naming Conventions}
+
+\begin{itemize}
+    \item \textbf{F[N]\_failure}: Binary indicator for failure within N years/quarters
+    \item \textbf{L\_variable}: Lagged value (one period)
+    \item \textbf{L[N]\_variable}: Lagged value (N periods)
+    \item \textbf{\_ratio}: Expressed as proportion (0-1 scale)
+    \item \textbf{\_growth}: Log difference (approximates percentage change)
+\end{itemize}
+
+\section{Identification Variables}
+
+\begin{longtable}{p{3cm}p{2cm}p{9cm}}
+\caption{Bank and Time Identifiers}\label{tab:identifiers}\\
+\toprule
+\textbf{Variable} & \textbf{Type} & \textbf{Definition} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{c}{\textit{(continued from previous page)}}\\
+\toprule
+\textbf{Variable} & \textbf{Type} & \textbf{Definition} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{\textit{(continued on next page)}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+
+bank\_id & Integer & Unique bank identifier assigned by data source. Range: 1-99999. Consistent across time periods. \\
+year & Integer & Calendar year from report date. Range: 1863-2024. Annual for historical era. \\
+quarter & Integer & Calendar quarter (1-4). Only available for modern era (1959+). \\
+quarter\_number & Integer & Alias for quarter variable. Same range and definition. \\
+report\_date & Date & Date of call report submission. Date object. Range: 1863-2024. \\
+era\_group & Categorical & Era classification: "Historical" (1863-1941) or "Modern" (1959-2024). \\
+age & Integer & Bank age in years since charter. Range: 0-150 years. \\
+\end{longtable}
+
+\section{Failure Variables}
+
+\subsection{Core Failure Indicators}
+
+\begin{longtable}{p{3cm}p{2cm}p{9cm}}
+\caption{Primary Failure Variables}\label{tab:failure-core}\\
+\toprule
+\textbf{Variable} & \textbf{Type} & \textbf{Definition} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{c}{\textit{(continued from previous page)}}\\
+\toprule
+\textbf{Variable} & \textbf{Type} & \textbf{Definition} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{\textit{(continued on next page)}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+
+failed\_bank & Binary & Permanent indicator: equals 1 if bank ultimately failed, 0 otherwise. \\
+days\_to\_failure & Integer & Days until failure (negative before failure). Range: -10000 to 0. NA if bank never fails. \\
+months\_to\_failure & Integer & Months until failure. Calculated as days\_to\_failure / 30.4375. Range: -300 to 0. \\
+quarters\_to\_failure & Integer & \textbf{KEY VARIABLE}. Quarters until failure. Calculated as days\_to\_failure / 91.25. Range: -300 to 0. Negative values indicate bank has not yet failed. \\
+time\_to\_fail & Integer & Years until failure. Calculated as floor(days\_to\_failure / 365). Range: -20 to 0. \\
+receivership\_date & Date & Date receiver appointed (historical era only, 1863-1937). From OCC data. \\
+fail\_day & Date & Failure date for modern era banks (1959-2024). From FDIC data. \\
+final\_year & Integer & Last year bank appears in dataset. May not be failure year if bank merged/exited. \\
+\end{longtable}
+
+\subsection{Horizon-Specific Failure Indicators}
+
+These variables indicate failure within specific time horizons. Created in analysis scripts (32, 35).
+
+\begin{longtable}{p{3cm}p{2cm}p{9cm}}
+\caption{Failure Horizon Indicators}\label{tab:failure-horizons}\\
+\toprule
+\textbf{Variable} & \textbf{Values} & \textbf{Definition} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{c}{\textit{(continued from previous page)}}\\
+\toprule
+\textbf{Variable} & \textbf{Values} & \textbf{Definition} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{\textit{(continued on next page)}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+
+F1\_failure & 0 or 100 & Fails within 1 year (4 quarters). Formula: $100 \times (\text{quarters\_to\_failure} \geq -4 \text{ and } \leq -1)$ \\
+F2\_failure & 0 or 100 & Fails within 2 years (8 quarters). Used in cross-section analysis (Script 32). \\
+F3\_failure & 0 or 100 & \textbf{PRIMARY OUTCOME}. Fails within 3 years (12 quarters). Formula: $100 \times (\text{quarters\_to\_failure} \geq -12 \text{ and } \leq -1)$ \\
+F4\_failure & 0 or 100 & Fails within 4 years (16 quarters). Cross-section analysis. \\
+F5\_failure & 0 or 100 & Fails within 5 years (20 quarters). Alternative horizon in Script 35. \\
+F6\_failure & 0 or 100 & Fails within 6 years (24 quarters). Cross-section only. \\
+F1\_failure\_run & 0 or 1 & Fails within 1 year \textit{AND} experienced bank run. Conditional indicator. \\
+F3\_failure\_run & 0 or 1 & Fails within 3 years \textit{AND} experienced bank run. Conditional indicator. \\
+\end{longtable}
+
+\section{Balance Sheet Variables}
+
+\begin{longtable}{p{3cm}p{2cm}p{9cm}}
+\caption{Core Balance Sheet Items}\label{tab:balance-sheet}\\
+\toprule
+\textbf{Variable} & \textbf{Type} & \textbf{Definition} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{c}{\textit{(continued from previous page)}}\\
+\toprule
+\textbf{Variable} & \textbf{Type} & \textbf{Definition} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{\textit{(continued on next page)}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+
+assets & Continuous & Total assets in nominal dollars. Range: \$100 - \$1 trillion. Sum of all asset categories from call reports. \\
+deposits & Continuous & Total deposits in nominal dollars. Range: \$50 - \$1 trillion. Includes demand, time, and savings deposits. \\
+loans & Continuous & Total loans in nominal dollars. Range: \$20 - \$100 billion. Sum of all loan categories. \\
+liquid & Continuous & Liquid assets in nominal dollars. Range: \$10 - \$100 billion. \textit{Historical}: cash + securities + due from banks. \textit{Modern}: cash + securities + federal funds purchased. \\
+equity & Continuous & Total equity/book value in nominal dollars. Range: \$5 - \$10 billion. Formula: capital + surplus + undivided\_profits. \\
+capital & Continuous & Capital stock in nominal dollars. Par value of outstanding shares. Primary equity component for historical banks. \\
+surplus & Continuous & Surplus/retained earnings in nominal dollars. Accumulated retained earnings over time. Historical era. \\
+undivided\_profits & Continuous & Current period undivided profits. Historical era. \\
+log\_assets & Continuous & Natural log of total assets. Range: 5-20. Used as bank size measure in regressions. \\
+\end{longtable}
+
+\section{Financial Ratios}
+
+\subsection{Key Risk Measures}
+
+\begin{longtable}{p{3.5cm}p{8.5cm}}
+\caption{Primary Financial Ratios}\label{tab:ratios}\\
+\toprule
+\textbf{Variable} & \textbf{Definition \& Interpretation} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}{\textit{(continued from previous page)}}\\
+\toprule
+\textbf{Variable} & \textbf{Definition \& Interpretation} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\textit{(continued on next page)}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+
+equity\_ratio & \textbf{SOLVENCY MEASURE}. equity / assets. Range: 0.01-0.50 (1\%-50\%). Higher values indicate better capitalization and lower insolvency risk. \\
+loan\_ratio & \textbf{ASSET RISK}. loans / assets. Range: 0.20-0.90 (20\%-90\%). Higher values indicate more lending activity but potentially higher credit risk. \\
+liquid\_ratio & \textbf{LIQUIDITY MEASURE}. liquid / assets. Range: 0.05-0.60 (5\%-60\%). Higher values indicate better ability to meet short-term obligations. \\
+surplus\_ratio & Profitability indicator (historical). surplus / equity. Range: 0-2. Higher values suggest accumulated profitability. \\
+cash\_ratio & Narrow liquidity measure (historical). cash\_reserves / assets. Range: 0-0.50. Strictest liquidity measure. \\
+income\_ratio & Profitability measure (modern only, post-1941). net\_income / assets. Range: 0-0.20 (0\%-20\% ROA). \\
+\end{longtable}
+
+\section{Growth Variables}
+
+\begin{longtable}{p{3.5cm}p{8.5cm}}
+\caption{Growth Measures}\label{tab:growth}\\
+\toprule
+\textbf{Variable} & \textbf{Definition \& Calculation} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}{\textit{(continued from previous page)}}\\
+\toprule
+\textbf{Variable} & \textbf{Definition \& Calculation} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\textit{(continued on next page)}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+
+assets\_growth & Annual asset growth rate. Formula: $\ln(\text{assets}_t) - \ln(\text{assets}_{t-1})$. Range: -0.50 to +0.50 (-50\% to +50\%). Year-over-year growth. \\
+deposits\_growth & Annual deposit growth rate. Same formula as assets\_growth but for deposits. Range: -0.50 to +0.50. \\
+growth & \textbf{PRIMARY GROWTH MEASURE}. 3-year asset growth. Formula: $\ln(\text{assets}_t) - \ln(\text{assets}_{t-3})$. Range: -1 to +1. Used for growth quintile analysis. \\
+growth\_cat & Growth quintile (1-5). Within-year quintiles of growth variable. 1 = slowest growing (Q1), 5 = fastest growing (Q5). Created in Scripts 32 and 35. \\
+L3\_assets & Assets lagged 3 periods. Used to calculate growth variable. In dollars. \\
+\end{longtable}
+
+\section{Lagged Variables}
+
+Lagged variables are used as predictors in regressions to avoid simultaneity bias.
+
+\begin{longtable}{p{3.5cm}p{8.5cm}}
+\caption{Lagged Predictors}\label{tab:lags}\\
+\toprule
+\textbf{Variable} & \textbf{Definition \& Usage} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}{\textit{(continued from previous page)}}\\
+\toprule
+\textbf{Variable} & \textbf{Definition \& Usage} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\textit{(continued on next page)}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+
+L\_equity\_ratio & One-period lagged equity ratio. Used in Scripts 08, 33, 34, 51. Predicts future failure. Range: 0.01-0.50. \\
+L\_loan\_ratio & One-period lagged loan ratio. Used in same scripts. Captures asset risk one period prior. Range: 0.20-0.90. \\
+L\_liquid\_ratio & One-period lagged liquid ratio. Used in same scripts. Prior period liquidity. Range: 0.05-0.60. \\
+L\_log\_assets & One-period lagged log assets. Controls for prior bank size in regressions. Range: 5-20. \\
+\end{longtable}
+
+\section{Bank Run Variables}
+
+\begin{longtable}{p{3.5cm}p{8.5cm}}
+\caption{Deposit Run Indicators}\label{tab:runs}\\
+\toprule
+\textbf{Variable} & \textbf{Definition} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}{\textit{(continued from previous page)}}\\
+\toprule
+\textbf{Variable} & \textbf{Definition} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\textit{(continued on next page)}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+
+run & Binary indicator for bank run. Equals 1 if deposit\_outflow $>$ 0.10 (10\% decline). Created in Script 06. \\
+deposit\_outflow & Deposit decline rate. Formula: (last\_deposits - failure\_deposits) / last\_deposits. Range: -0.50 to +1.0. Positive = outflows (decline), negative = inflows (growth). \\
+run\_is\_missing & Indicator for missing run data. Equals 1 if run information unavailable for that bank-year. \\
+\end{longtable}
+
+\section{Receivership Variables}
+
+Variables related to bank failure outcomes and depositor recovery (historical era).
+
+\begin{longtable}{p{3.5cm}p{8.5cm}}
+\caption{Receivership Outcomes}\label{tab:receivership}\\
+\toprule
+\textbf{Variable} & \textbf{Definition} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}{\textit{(continued from previous page)}}\\
+\toprule
+\textbf{Variable} & \textbf{Definition} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\textit{(continued on next page)}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+
+last\_call\_deposits & Deposits at last call report before failure. In nominal dollars. \\
+last\_call\_assets & Assets at last call report before failure. In nominal dollars. \\
+deposits\_at\_suspension & Deposits at suspension/failure date. From receivership records. \\
+assets\_at\_suspension & Assets at suspension/failure date. From receivership records. \\
+total\_assessed & Total assets assessed by receiver. Estimated liquidation value. \\
+rho & Recovery rate. Calculated as total\_assessed / deposits\_at\_suspension. Range: 0-1. Mean: 0.0006 (0.06\%). \\
+depositor\_loss & Depositor loss. Calculated as 1 - rho. Mean: 0.9994 (99.94\%). \\
+receivership\_days & Days in receivership. From failure to final resolution. \\
+receivership\_years & Years in receivership. receivership\_days / 365.25. \\
+\end{longtable}
+
+\section{Macro Variables}
+
+Macroeconomic controls used in regressions.
+
+\begin{longtable}{p{3.5cm}p{8.5cm}}
+\caption{Macroeconomic Variables}\label{tab:macro}\\
+\toprule
+\textbf{Variable} & \textbf{Definition \& Source} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}{\textit{(continued from previous page)}}\\
+\toprule
+\textbf{Variable} & \textbf{Definition \& Source} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\textit{(continued on next page)}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+
+rgdp\_pc & Real GDP per capita. From BEA (1947+) and Barro-Ursua (pre-1947). In constant dollars. \\
+rgdp\_growth & Real GDP growth rate. Log difference of rgdp\_pc. \\
+cpi & Consumer Price Index. From GFD and JST databases. Base year varies. \\
+tbill\_rate & Treasury bill rate. Short-term interest rate from GFD. Percentage points. \\
+bond\_yield & Long-term bond yield. From GFD. Percentage points. \\
+crisis & Financial crisis indicator. From JST database. Binary: 1 = crisis year, 0 = normal. \\
+\end{longtable}
+
+\section{Variable Creation Scripts}
+
+\subsection{Script Reference}
+
+\begin{longtable}{p{2.5cm}p{9.5cm}}
+\caption{Which Scripts Create Which Variables}\label{tab:script-reference}\\
+\toprule
+\textbf{Script(s)} & \textbf{Variables Created} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}{\textit{(continued from previous page)}}\\
+\toprule
+\textbf{Script(s)} & \textbf{Variables Created} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{\textit{(continued on next page)}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+
+04 & Historical balance sheet variables, age, failed\_bank, receivership\_date, quarters\_to\_failure \\
+05 & Modern balance sheet variables, fail\_day, quarters\_to\_failure, quarter \\
+06 & run, deposit\_outflow, receivership outcomes \\
+07 & era\_group, combined panel \\
+08 & Lagged variables (L\_equity\_ratio, L\_loan\_ratio, L\_liquid\_ratio, L\_log\_assets) for coefplots \\
+32 & F1-F6\_failure indicators, growth, growth\_cat (cross-section analysis) \\
+35 & F1/F3/F5\_failure, F1/F3\_failure\_run, growth, growth\_cat (main regression dataset) \\
+51 & Uses lagged variables created in Script 08 for AUC analysis \\
+\end{longtable}
+
+\section{Key Variable Notes}
+
+\subsection{Most Important Variables}
+
+The following variables are central to the paper's analysis:
+
+\begin{enumerate}
+    \item \textbf{F3\_failure}: Primary outcome variable (failure within 3 years)
+    \item \textbf{quarters\_to\_failure}: Core timing variable for all failure indicators
+    \item \textbf{growth} \& \textbf{growth\_cat}: Primary finding - shrinking banks fail more
+    \item \textbf{equity\_ratio}: Solvency measure, strong predictor of failure
+    \item \textbf{liquid\_ratio}: Liquidity measure, important but weaker than equity
+    \item \textbf{loan\_ratio}: Asset risk measure
+    \item \textbf{run}: Bank run indicator, amplifies failure risk 3-4x
+\end{enumerate}
+
+\subsection{Era Differences}
+
+Some variables differ by era:
+
+\begin{itemize}
+    \item \textbf{Historical (1863-1941)}: receivership\_date, surplus\_ratio, cash\_ratio
+    \item \textbf{Modern (1959-2024)}: fail\_day, quarter variables, income\_ratio
+    \item \textbf{Both eras}: Core balance sheet items, ratios, growth measures
+\end{itemize}
+
+\subsection{Missing Data Patterns}
+
+\begin{itemize}
+    \item \textbf{run}: Only available for subset of failing banks with receivership data
+    \item \textbf{income\_ratio}: Only available post-1941 (modern reporting standards)
+    \item \textbf{quarters\_to\_failure}: Only defined for failing banks (NA for survivors)
+    \item \textbf{F[N]\_failure}: Only non-zero for failing banks within horizon
+\end{itemize}
+
+\section{Summary Statistics}
+
+\subsection{Dataset Overview}
+
+\begin{table}[h]
+\centering
+\caption{Combined Dataset Summary}
+\begin{tabular}{lrr}
+\toprule
+\textbf{Statistic} & \textbf{Value} & \textbf{Notes} \\
+\midrule
+Total observations & 2,872,893 & Bank-year/quarters \\
+Unique banks & ~30,000 & Historical + Modern \\
+Failure rate (overall) & 7.7\% & Failed banks / all banks \\
+Time span & 1863-2024 & 161 years \\
+Historical obs & ~340,000 & 1863-1941, annual \\
+Modern obs & ~2,500,000 & 1959-2024, quarterly \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Key Variable Ranges}
+
+\begin{table}[h]
+\centering
+\caption{Typical Values for Core Ratios}
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Variable} & \textbf{Mean} & \textbf{Median} & \textbf{Std Dev} \\
+\midrule
+equity\_ratio & 0.12 & 0.10 & 0.06 \\
+loan\_ratio & 0.60 & 0.62 & 0.15 \\
+liquid\_ratio & 0.25 & 0.22 & 0.12 \\
+log\_assets & 12.5 & 12.3 & 2.1 \\
+growth (3-year) & 0.15 & 0.12 & 0.35 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Conclusion}
+
+This data dictionary provides comprehensive definitions for all variables in the Failing Banks R replication package. For questions about specific variables, see the technical documentation or examine the R scripts that create them.
+
+\subsection{Additional Resources}
+
+\begin{itemize}
+    \item \textbf{Technical\_Documentation.pdf}: Detailed model specifications
+    \item \textbf{Quick\_Start\_Guide.pdf}: How to run the replication
+    \item \textbf{Source Scripts}: 1\_source\_code/ directory for variable creation logic
+\end{itemize}
+
+\end{document}
+

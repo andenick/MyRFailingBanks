@@ -1,0 +1,10 @@
+Statistic,Value,Unit,Source
+Total Observations (Combined),2865624,bank-quarters,Script 07
+Historical Observations,337426,bank-quarters,Script 04
+Modern Observations,2528198,bank-quarters,Script 05
+Regression Sample Size,964053,bank-quarters,Script 35
+Receivership Sample Size,2961,receivership events,Script 06
+Banks (Unique IDs),25019,banks,Script 05
+Time Span,161,years,1863-2024
+Historical Failure Rate (Avg),2.5,percent,Script 21
+Modern Failure Rate (Avg),1,percent,Script 21

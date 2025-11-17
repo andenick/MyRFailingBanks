@@ -1,0 +1,196 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=cyan}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Setup Instructions}
+\lhead{Failing Banks Replication}
+\rfoot{Page \thepage}
+
+\title{\textbf{Failing Banks R Replication}\\[0.5em]\Large Setup Instructions}
+\author{Installation Guide}
+\date{October 22, 2025}
+
+\begin{document}
+\maketitle
+
+\section{Quick Start}
+
+\subsection{Stata Directory Structure (Recommended)}
+
+If you have the original Stata replication package:
+
+\begin{verbatim}
+Your_Project/
+  |-- sources/      # Your existing Stata data
+  |-- code/         # Extract R package here
+  |-- dataclean/    # Created by scripts
+  |-- output/       # Created by scripts
+  +-- tempfiles/    # Created by scripts
+\end{verbatim}
+
+\textbf{Steps}:
+\begin{enumerate}
+    \item Extract package into \texttt{code/} folder
+    \item Open R: \texttt{setwd("path/to/Your\_Project/code")}
+    \item Run: \texttt{source("RUN\_ALL.R")}
+\end{enumerate}
+
+Scripts auto-detect Stata structure!
+
+\subsection{R Directory Structure}
+
+Alternative structure:
+
+\begin{verbatim}
+Your_Project/
+  |-- code/                # R scripts
+  |-- 2_input_data/
+  |   +-- Sources/         # Copy data here
+  +-- 3_output_data/       # Created by scripts
+\end{verbatim}
+
+\section{Required Data}
+
+\subsection{Critical Files}
+
+\begin{itemize}
+    \item \texttt{call-reports-historical.dta} ($\sim$800 MB)
+    \item \texttt{call-reports-modern.dta} ($\sim$1 GB)
+    \item \texttt{FDIC/} folder with failure data
+    \item \texttt{JST/} folder with macro data
+    \item \texttt{GFD/} folder with yields and CPI
+    \item \texttt{Macro/} folder with GDP data
+    \item \texttt{occ-receiverships/} folder
+\end{itemize}
+
+\subsection{Where to Get Data}
+
+\begin{enumerate}
+    \item \textbf{Original Stata package}: \texttt{qje-repkit-to-upload/sources/}
+    \item \textbf{FDIC website}: \url{https://www.fdic.gov/}
+    \item \textbf{JST Database}: \url{https://www.macrohistory.net/database/}
+    \item \textbf{Contact authors} for cleaned historical data
+\end{enumerate}
+
+\section{System Requirements}
+
+\subsection{Software}
+\begin{itemize}
+    \item \textbf{R}: Version 4.0+ (tested on 4.4.1)
+    \item \textbf{RStudio}: Optional but recommended
+\end{itemize}
+
+\subsection{Packages (Auto-installed)}
+tidyverse, haven, fixest, ggplot2, pROC, readxl, lubridate, scales, broom, patchwork, caret, knitr, kableExtra, openxlsx, and 10+ more
+
+\subsection{System Resources}
+\begin{itemize}
+    \item \textbf{RAM}: 8GB+ recommended (4GB minimum for sample mode)
+    \item \textbf{Disk Space}: 15GB free
+    \item \textbf{Time}: 2-3 hours full mode, 10-15 minutes sample mode
+\end{itemize}
+
+\section{Verification Steps}
+
+Before running:
+
+\subsection{For Stata Structure}
+\begin{itemize}
+    \item[$\square$] \texttt{../sources/call-reports-historical.dta} exists
+    \item[$\square$] \texttt{../sources/call-reports-modern.dta} exists
+    \item[$\square$] \texttt{../sources/FDIC/} folder exists
+    \item[$\square$] Working directory is \texttt{code/} folder
+\end{itemize}
+
+\subsection{For R Structure}
+\begin{itemize}
+    \item[$\square$] \texttt{../2\_input\_data/Sources/} folder exists
+    \item[$\square$] All data files copied to \texttt{Sources/}
+    \item[$\square$] Working directory is \texttt{code/} folder
+\end{itemize}
+
+\section{Troubleshooting}
+
+\subsection{Common Issues}
+
+\textbf{"Cannot find file: sources/.../[filename]"}
+
+\textit{Fix}: Verify file exists and path is correct. Check spelling matches exactly.
+
+\vspace{0.5em}
+
+\textbf{"Cannot detect directory structure"}
+
+\textit{Fix}: Ensure \texttt{code/} is next to \texttt{sources/} or \texttt{2\_input\_data/}
+
+Run: \texttt{list.files("..")} in R to see parent directory contents
+
+\vspace{0.5em}
+
+\textbf{"Package 'xxx' not available"}
+
+\textit{Fix}: Run \texttt{source("install\_packages.R")} from \texttt{code/} directory
+
+\section{Outputs Generated}
+
+After successful run:
+
+\subsection{Figures (16 PDFs in output/figures/)}
+\begin{itemize}
+    \item \texttt{04\_prob\_failure\_growth\_all.pdf} --- Key finding
+    \item Failure time series
+    \item Coefficient plots
+    \item Recovery rates
+    \item And 12 more...
+\end{itemize}
+
+\subsection{Tables (4 LaTeX files in output/tables/)}
+\begin{itemize}
+    \item \texttt{04\_assets\_in\_failure\_assessed.tex}
+    \item Descriptive statistics
+    \item Recovery rates
+    \item Rho-V analysis
+\end{itemize}
+
+\subsection{Datasets (in dataclean/)}
+\begin{itemize}
+    \item \texttt{combined-data.dta} (2.87M observations)
+    \item \texttt{temp\_reg\_data.dta} (regression dataset)
+    \item Additional intermediate files
+\end{itemize}
+
+\section{Next Steps}
+
+\begin{enumerate}
+    \item Verify data structure matches requirements
+    \item Set working directory to \texttt{code/} folder
+    \item Run \texttt{source("RUN\_ALL.R")} for full mode
+    \item OR run \texttt{source("RUN\_ALL\_SAMPLE.R")} for fast test
+    \item Monitor console output for progress
+    \item Check outputs in \texttt{output/figures/} and \texttt{output/tables/}
+\end{enumerate}
+
+\section{Additional Documentation}
+
+\begin{itemize}
+    \item \textbf{Quick\_Start\_Guide.pdf} --- How to run scripts
+    \item \textbf{Variable\_Definitions.pdf} --- Data dictionary (70+ variables)
+    \item \textbf{Technical\_Documentation.pdf} --- Detailed technical specs
+    \item \textbf{Validation\_Report.pdf} --- R vs Stata comparison
+\end{itemize}
+
+\vspace{2em}
+
+\begin{center}
+\rule{0.8\textwidth}{0.5pt}\\[0.5em]
+For questions, see Technical\_Documentation.pdf or contact authors
+\end{center}
+
+\end{document}
+

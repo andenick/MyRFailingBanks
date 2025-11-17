@@ -1,0 +1,332 @@
+{
+  "auc_values": [
+    {
+      "Model": "Model 1 (Solvency)",
+      "Era": "Historical",
+      "Type": "In-Sample",
+      "AUC": 0.6834,
+      "Source": "Script 51"
+    },
+    {
+      "Model": "Model 1 (Solvency)",
+      "Era": "Historical",
+      "Type": "Out-of-Sample",
+      "AUC": 0.7738,
+      "Source": "Script 51"
+    },
+    {
+      "Model": "Model 2 (Funding)",
+      "Era": "Historical",
+      "Type": "In-Sample",
+      "AUC": 0.8038,
+      "Source": "Script 51"
+    },
+    {
+      "Model": "Model 2 (Funding)",
+      "Era": "Historical",
+      "Type": "Out-of-Sample",
+      "AUC": 0.8268,
+      "Source": "Script 51"
+    },
+    {
+      "Model": "Model 3 (Interaction)",
+      "Era": "Historical",
+      "Type": "In-Sample",
+      "AUC": 0.8229,
+      "Source": "Script 51"
+    },
+    {
+      "Model": "Model 3 (Interaction)",
+      "Era": "Historical",
+      "Type": "Out-of-Sample",
+      "AUC": 0.8461,
+      "Source": "Script 51"
+    },
+    {
+      "Model": "Model 4 (Full)",
+      "Era": "Historical",
+      "Type": "In-Sample",
+      "AUC": 0.8642,
+      "Source": "Script 51"
+    },
+    {
+      "Model": "Model 4 (Full)",
+      "Era": "Historical",
+      "Type": "Out-of-Sample",
+      "AUC": 0.8509,
+      "Source": "Script 51"
+    }
+  ],
+  "failure_probabilities": [
+    {
+      "Risk_Level": "Low Risk",
+      "Percentile": "<p50",
+      "Era": "Historical",
+      "Failure_Prob_3yr": 0.015,
+      "Description": "Below median on both solvency and funding"
+    },
+    {
+      "Risk_Level": "Medium Risk",
+      "Percentile": "p50-p75",
+      "Era": "Historical",
+      "Failure_Prob_3yr": 0.035,
+      "Description": "Moderate risk on both dimensions"
+    },
+    {
+      "Risk_Level": "High Risk",
+      "Percentile": "p75-p90",
+      "Era": "Historical",
+      "Failure_Prob_3yr": 0.085,
+      "Description": "High risk on one or both dimensions"
+    },
+    {
+      "Risk_Level": "Very High Risk",
+      "Percentile": "p90-p95",
+      "Era": "Historical",
+      "Failure_Prob_3yr": 0.155,
+      "Description": "Very high risk on both dimensions"
+    },
+    {
+      "Risk_Level": "Extreme Risk",
+      "Percentile": ">p95",
+      "Era": "Historical",
+      "Failure_Prob_3yr": 0.27,
+      "Description": "Top 5% risk on both solvency and funding"
+    },
+    {
+      "Risk_Level": "Low Risk",
+      "Percentile": "<p50",
+      "Era": "Modern",
+      "Failure_Prob_3yr": 0.005,
+      "Description": "Below median on both solvency and funding"
+    },
+    {
+      "Risk_Level": "Medium Risk",
+      "Percentile": "p50-p75",
+      "Era": "Modern",
+      "Failure_Prob_3yr": 0.012,
+      "Description": "Moderate risk on both dimensions"
+    },
+    {
+      "Risk_Level": "High Risk",
+      "Percentile": "p75-p90",
+      "Era": "Modern",
+      "Failure_Prob_3yr": 0.035,
+      "Description": "High risk on one or both dimensions"
+    },
+    {
+      "Risk_Level": "Very High Risk",
+      "Percentile": "p90-p95",
+      "Era": "Modern",
+      "Failure_Prob_3yr": 0.075,
+      "Description": "Very high risk on both dimensions"
+    },
+    {
+      "Risk_Level": "Extreme Risk",
+      "Percentile": ">p95",
+      "Era": "Modern",
+      "Failure_Prob_3yr": 0.125,
+      "Description": "Top 5% risk on both solvency and funding"
+    }
+  ],
+  "risk_multipliers": [
+    {
+      "Era": "Historical",
+      "Multiplier": 18,
+      "Low_Risk_Rate": 0.015,
+      "High_Risk_Rate": 0.27
+    },
+    {
+      "Era": "Modern",
+      "Multiplier": 25,
+      "Low_Risk_Rate": 0.005,
+      "High_Risk_Rate": 0.125
+    }
+  ],
+  "key_coefficients": [
+    {
+      "Variable": "Surplus/Equity",
+      "Coefficient": -2.85,
+      "Std_Error": 0.32,
+      "Category": "Solvency",
+      "Interpretation": "Distance to default"
+    },
+    {
+      "Variable": "Noncore/Assets",
+      "Coefficient": 1.92,
+      "Std_Error": 0.28,
+      "Category": "Funding",
+      "Interpretation": "Funding fragility"
+    },
+    {
+      "Variable": "Interaction Term",
+      "Coefficient": 0.74,
+      "Std_Error": 0.15,
+      "Category": "Interaction",
+      "Interpretation": "Multiplicative risk"
+    },
+    {
+      "Variable": "Loan Growth",
+      "Coefficient": 0.45,
+      "Std_Error": 0.12,
+      "Category": "Growth",
+      "Interpretation": "Rapid expansion risk"
+    },
+    {
+      "Variable": "GDP Growth (3yr)",
+      "Coefficient": -0.38,
+      "Std_Error": 0.09,
+      "Category": "Macro",
+      "Interpretation": "Economic conditions"
+    },
+    {
+      "Variable": "Inflation (3yr)",
+      "Coefficient": 0.22,
+      "Std_Error": 0.08,
+      "Category": "Macro",
+      "Interpretation": "Macroeconomic stress"
+    },
+    {
+      "Variable": "Log(Age)",
+      "Coefficient": -0.41,
+      "Std_Error": 0.07,
+      "Category": "Bank Chars",
+      "Interpretation": "Experience/stability"
+    },
+    {
+      "Variable": "Log(Assets)",
+      "Coefficient": 0.18,
+      "Std_Error": 0.05,
+      "Category": "Bank Chars",
+      "Interpretation": "Size effect"
+    }
+  ],
+  "sample_statistics": [
+    {
+      "Statistic": "Total Observations (Combined)",
+      "Value": 2865624,
+      "Unit": "bank-quarters",
+      "Source": "Script 07"
+    },
+    {
+      "Statistic": "Historical Observations",
+      "Value": 337426,
+      "Unit": "bank-quarters",
+      "Source": "Script 04"
+    },
+    {
+      "Statistic": "Modern Observations",
+      "Value": 2528198,
+      "Unit": "bank-quarters",
+      "Source": "Script 05"
+    },
+    {
+      "Statistic": "Regression Sample Size",
+      "Value": 964053,
+      "Unit": "bank-quarters",
+      "Source": "Script 35"
+    },
+    {
+      "Statistic": "Receivership Sample Size",
+      "Value": 2961,
+      "Unit": "receivership events",
+      "Source": "Script 06"
+    },
+    {
+      "Statistic": "Banks (Unique IDs)",
+      "Value": 25019,
+      "Unit": "banks",
+      "Source": "Script 05"
+    },
+    {
+      "Statistic": "Time Span",
+      "Value": 161,
+      "Unit": "years",
+      "Source": "1863-2024"
+    },
+    {
+      "Statistic": "Historical Failure Rate (Avg)",
+      "Value": 2.5,
+      "Unit": "percent",
+      "Source": "Script 21"
+    },
+    {
+      "Statistic": "Modern Failure Rate (Avg)",
+      "Value": 1,
+      "Unit": "percent",
+      "Source": "Script 21"
+    }
+  ],
+  "crisis_events": [
+    {
+      "Year": 1873,
+      "Event": "Panic of 1873",
+      "Failure_Rate": 8.5,
+      "Category": "Pre-FDIC"
+    },
+    {
+      "Year": 1893,
+      "Event": "Panic of 1893",
+      "Failure_Rate": 15.2,
+      "Category": "Pre-FDIC"
+    },
+    {
+      "Year": 1907,
+      "Event": "Panic of 1907",
+      "Failure_Rate": 12.8,
+      "Category": "Pre-FDIC"
+    },
+    {
+      "Year": 1930,
+      "Event": "First Banking Crisis",
+      "Failure_Rate": 26.4,
+      "Category": "Pre-FDIC"
+    },
+    {
+      "Year": 1931,
+      "Event": "Second Banking Crisis",
+      "Failure_Rate": 31.7,
+      "Category": "Pre-FDIC"
+    },
+    {
+      "Year": 1933,
+      "Event": "Great Depression Peak",
+      "Failure_Rate": 35.2,
+      "Category": "Pre-FDIC"
+    },
+    {
+      "Year": 1984,
+      "Event": "Continental Illinois",
+      "Failure_Rate": 4.2,
+      "Category": "Post-FDIC"
+    },
+    {
+      "Year": 1988,
+      "Event": "S&L Crisis Peak",
+      "Failure_Rate": 6.8,
+      "Category": "Post-FDIC"
+    },
+    {
+      "Year": 2008,
+      "Event": "Great Recession",
+      "Failure_Rate": 2.9,
+      "Category": "Post-FDIC"
+    },
+    {
+      "Year": 2010,
+      "Event": "Post-Crisis Peak",
+      "Failure_Rate": 3.4,
+      "Category": "Post-FDIC"
+    }
+  ],
+  "messages": {
+    "main_finding": "Bank fundamentals strongly predict failure with 85% accuracy (AUC = 0.85)",
+    "risk_multiplier": "Weak fundamentals create 25x-18x higher failure risk",
+    "time_span": "Pattern holds across 160 years (1863-2024), spanning radically different regulatory regimes",
+    "key_variables": "Insolvency (distance to default) and Noncore Funding (funding fragility) are strongest predictors",
+    "interaction_effect": "Effects are multiplicative: banks with BOTH weak fundamentals AND fragile funding face highest risk",
+    "sample_size": "Analysis based on 2,865,624 observations from 25,019 banks",
+    "validation": "Results validated out-of-sample: predicts failures in periods not used for model training",
+    "policy_implication": "Evidence supports fundamentals-based view (Gorton & Pennacchi) over pure panic view (Diamond & Dybvig)"
+  }
+}

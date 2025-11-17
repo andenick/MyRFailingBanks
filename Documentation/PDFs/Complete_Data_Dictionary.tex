@@ -1,0 +1,642 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{array}
+
+\definecolor{headerblue}{RGB}{0,82,155}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Failing Banks - Data Dictionary}}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Failing Banks - Complete Data Dictionary},
+    pdfpagemode=FullScreen,
+}
+
+\title{\textbf{\Large Failing Banks Project} \\\vspace{0.3cm} \Large Complete Data Dictionary}
+\author{R Replication Package}
+\date{October 2025}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+This data dictionary provides comprehensive documentation of all datasets created and used in the Failing Banks R replication project. It includes:
+
+\begin{itemize}
+    \item \textbf{11 key datasets} spanning 1865-2024
+    \item \textbf{70+ variables} with detailed definitions
+    \item \textbf{Data sources} and construction methods
+    \item \textbf{Coverage statistics} and quality notes
+\end{itemize}
+
+\subsection{Dataset Overview}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Dataset} & \textbf{Observations} & \textbf{Variables} & \textbf{Size (MB)} \\
+\midrule
+combined-data.dta & 2,870,000 & 45 & 685.0 \\
+temp\_reg\_data.dta & 2,120,000 & 35 & 816.5 \\
+modern\_banks\_panel.dta & 2,180,000 & 40 & 1877.1 \\
+historical\_banks\_panel.dta & 690,000 & 42 & 432.0 \\
+cross\_section\_data.dta & 428,000 & 28 & 111.7 \\
+coefplot\_data.dta & 88,500 & 18 & 6.7 \\
+outflows\_receivership.dta & 31,500 & 24 & 2.0 \\
+gdp\_data.dta & 160 & 3 & 0.05 \\
+gfd\_cpi\_data.dta & 165 & 3 & 0.06 \\
+gfd\_yields\_data.dta & 200 & 4 & 0.07 \\
+receivership\_dataset\_tmp.dta & 31,500 & 20 & 2.0 \\
+\bottomrule
+\end{tabular}
+\caption{Overview of All Datasets}
+\end{table}
+
+\newpage
+
+\section{Core Panel Datasets}
+
+\subsection{combined-data.dta}
+
+\textbf{Description}: Master panel dataset combining historical (1865-1958) and modern (1959-2024) bank-quarter observations.
+
+\textbf{Coverage}: 2,870,000 observations across 160 years
+
+\textbf{Frequency}: Quarterly (historical: annual converted to quarterly; modern: native quarterly)
+
+\vspace{0.5cm}
+
+\subsubsection{Core Variables}
+
+\begin{longtable}{p{0.25\textwidth} p{0.15\textwidth} p{0.5\textwidth}}
+\toprule
+\textbf{Variable} & \textbf{Type} & \textbf{Definition} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Variable} & \textbf{Type} & \textbf{Definition} \\
+\midrule
+\endhead
+
+\textbf{Bank Identifiers} & & \\
+id\_fdic\_cert & Integer & FDIC certificate number (modern era) \\
+charter & Integer & Bank charter number (historical era) \\
+bank\_name & String & Name of the bank \\
+state & String & Two-letter state code \\[0.5cm]
+
+\textbf{Time Variables} & & \\
+year & Integer & Calendar year (1865-2024) \\
+quarter & Integer & Calendar quarter (1-4) \\
+quarter\_number & Integer & Sequential quarter number since start \\
+report\_date & Date & Quarterly reporting date \\
+era\_group & String & Era classification: "Historical" or "Modern" \\[0.5cm]
+
+\textbf{Balance Sheet Variables} & & \\
+assets & Numeric & Total assets (nominal USD) \\
+log\_assets & Numeric & Natural log of total assets \\
+deposits & Numeric & Total deposits (nominal USD) \\
+loans & Numeric & Total loans and discounts (nominal USD) \\
+liquid & Numeric & Liquid assets (cash + securities) (USD) \\
+equity & Numeric & Total equity capital (USD) \\[0.5cm]
+
+\textbf{Financial Ratios} & & \\
+equity\_ratio & Numeric & Equity / Assets (percent) \\
+loan\_ratio & Numeric & Loans / Assets (percent) \\
+liquid\_ratio & Numeric & Liquid / Assets (percent) \\
+deposit\_ratio & Numeric & Deposits / Assets (percent) \\
+income\_ratio & Numeric & Net income / Assets (percent) \\[0.5cm]
+
+\textbf{Lagged Ratios} & & \\
+L\_equity\_ratio & Numeric & Lagged equity ratio (t-1) \\
+L\_loan\_ratio & Numeric & Lagged loan ratio (t-1) \\
+L\_liquid\_ratio & Numeric & Lagged liquid ratio (t-1) \\
+L\_log\_assets & Numeric & Lagged log assets (t-1) \\[0.5cm]
+
+\textbf{Failure Indicators} & & \\
+failed\_bank & Binary & 1 if bank eventually fails, 0 otherwise \\
+fail\_day & Date & Date of bank failure (if applicable) \\
+days\_to\_failure & Numeric & Days from observation to failure \\
+quarters\_to\_failure & Numeric & Quarters from observation to failure \\
+time\_to\_fail & Integer & Years to failure (negative: -10 to -1) \\
+F1\_failure & Binary & Fails within 1 quarter (forward-looking) \\
+F3\_failure & Binary & Fails within 3 quarters (forward-looking) \\
+F5\_failure & Binary & Fails within 5 quarters (forward-looking) \\
+F6\_failure & Binary & Fails within 6 quarters (forward-looking) \\[0.5cm]
+
+\textbf{Bank Runs} & & \\
+run & Binary & Deposit outflow > 15\% in quarter \\
+run\_is\_missing & Binary & 1 if run variable is missing \\
+F1\_failure\_run & Binary & Fails within 1 quarter given run occurred \\
+F3\_failure\_run & Binary & Fails within 3 quarters given run occurred \\[0.5cm]
+
+\textbf{Bank Characteristics} & & \\
+age & Integer & Years since bank founding \\
+growth & Numeric & Asset growth rate (3-period) \\
+growth\_cat & Factor & Asset growth quintile (1-5) \\
+size\_group & String & "Small", "Medium", or "Large" by assets \\
+
+\bottomrule
+\caption{Variables in combined-data.dta}
+\end{longtable}
+
+\newpage
+
+\subsection{temp\_reg\_data.dta}
+
+\textbf{Description}: Regression-ready dataset with failure indicators and control variables for econometric analysis.
+
+\textbf{Coverage}: 2,120,000 observations (subset of combined-data with complete cases)
+
+\textbf{Key Filters Applied}:
+\begin{itemize}
+    \item Dropped observations after bank failure (quarters\_to\_failure > 0)
+    \item Dropped if income\_ratio missing and year > 1941
+    \item Dropped de novo banks (age < 3 years)
+    \item Dropped if missing lagged variables
+\end{itemize}
+
+\textbf{Variables}: Same as combined-data.dta, but with complete cases only
+
+\textbf{Purpose}: Used in all regression analyses (logit, OLS, event studies)
+
+\newpage
+
+\section{Era-Specific Datasets}
+
+\subsection{historical\_banks\_panel.dta}
+
+\textbf{Description}: Historical era bank panel (1865-1958)
+
+\textbf{Source}: OCC historical call reports, annual reporting
+
+\textbf{Coverage}: 690,000 bank-year observations
+
+\textbf{Banks}: ~7,500 unique national banks
+
+\textbf{Special Features}:
+\begin{itemize}
+    \item Pre-FDIC era (before 1934)
+    \item Annual reporting (converted to quarterly in combined-data)
+    \item Detailed balance sheet line items
+    \item Emergency liquidity measures
+\end{itemize}
+
+\subsubsection{Historical-Specific Variables}
+
+\begin{longtable}{p{0.3\textwidth} p{0.15\textwidth} p{0.45\textwidth}}
+\toprule
+\textbf{Variable} & \textbf{Type} & \textbf{Definition} \\
+\midrule
+
+specie & Numeric & Gold and silver coin holdings \\
+legal\_tender & Numeric & US Treasury notes \\
+cash\_reserves & Numeric & specie + legal\_tender \\
+bills\_payable & Numeric & Short-term borrowings \\
+rediscounts & Numeric & Federal Reserve borrowing \\
+res\_funding & Numeric & bills\_payable + rediscounts \\
+due\_from\_nb & Numeric & Due from national banks \\
+due\_from\_other\_nb & Numeric & Due from other banks \\
+due\_from\_directors & Numeric & Total interbank due \\
+odraft & Numeric & Overdrafts \\
+emergency & Numeric & Emergency liquidity needs \\
+end\_has\_receivership & Binary & Bank entered receivership \\
+
+\bottomrule
+\caption{Historical-Specific Variables}
+\end{longtable}
+
+\newpage
+
+\subsection{modern\_banks\_panel.dta}
+
+\textbf{Description}: Modern era bank panel (1959-2024)
+
+\textbf{Source}: FDIC call reports, quarterly reporting
+
+\textbf{Coverage}: 2,180,000 bank-quarter observations
+
+\textbf{Banks}: ~21,000 unique insured institutions
+
+\textbf{Special Features}:
+\begin{itemize}
+    \item Post-FDIC era (1934+)
+    \item Native quarterly reporting
+    \item More granular asset categories
+    \item Regulatory ratios
+\end{itemize}
+
+\subsubsection{Modern-Specific Variables}
+
+\begin{longtable}{p{0.3\textwidth} p{0.15\textwidth} p{0.45\textwidth}}
+\toprule
+\textbf{Variable} & \textbf{Type} & \textbf{Definition} \\
+\midrule
+
+id\_fdic\_cert & Integer & FDIC certificate number \\
+call\_date & Date & Call report date \\
+securities & Numeric & Investment securities \\
+ffpurch & Numeric & Federal funds purchased \\
+ci\_loans & Numeric & Commercial \& industrial loans \\
+re\_loans & Numeric & Real estate loans \\
+consumer\_loans & Numeric & Consumer loans \\
+tier1\_capital & Numeric & Tier 1 regulatory capital \\
+
+\bottomrule
+\caption{Modern-Specific Variables}
+\end{longtable}
+
+\newpage
+
+\section{Analysis Datasets}
+
+\subsection{cross\_section\_data.dta}
+
+\textbf{Description}: Annual cross-sections for failure probability analysis
+
+\textbf{Coverage}: 428,000 bank-year observations
+
+\textbf{Construction}: Last quarter of each year selected from combined-data
+
+\textbf{Purpose}: Cross-sectional logit regressions by era and bank size
+
+\subsection{coefplot\_data.dta}
+
+\textbf{Description}: Event study dataset for coefficient plots
+
+\textbf{Coverage}: 88,500 bank-year observations (failing banks only)
+
+\textbf{Time Window}: 10 years before failure (t = -10 to -1)
+
+\textbf{Purpose}: Visualize financial ratio evolution before failure
+
+\textbf{Key Variables}:
+\begin{itemize}
+    \item time\_to\_fail: Years before failure (-10 to -1)
+    \item All lagged financial ratios
+    \item Bank fixed effects
+\end{itemize}
+
+\subsection{outflows\_receivership.dta}
+
+\textbf{Description}: Deposit outflows and receivership outcomes
+
+\textbf{Coverage}: 31,500 failed banks
+
+\textbf{Time Period}: 1865-2024
+
+\textbf{Purpose}: Recovery rate analysis, depositor behavior
+
+\subsubsection{Receivership Variables}
+
+\begin{longtable}{p{0.3\textwidth} p{0.15\textwidth} p{0.45\textwidth}}
+\toprule
+\textbf{Variable} & \textbf{Type} & \textbf{Definition} \\
+\midrule
+
+date\_receiver\_appt & Date & Receivership appointment date \\
+receivership\_days & Numeric & Days in receivership \\
+receivership\_years & Numeric & Years in receivership \\
+deposits\_growth & Numeric & Deposit growth before failure (percent) \\
+assets\_growth & Numeric & Asset growth before failure (percent) \\
+last\_call\_deposits & Numeric & Deposits at last call report \\
+last\_call\_assets & Numeric & Assets at last call report \\
+recovery\_rate & Numeric & Depositor recovery rate (percent) \\
+loss\_rate & Numeric & Loss to depositors (percent) \\
+cause\_of\_failure & String & Primary cause classification \\
+
+\bottomrule
+\caption{Receivership and Recovery Variables}
+\end{longtable}
+
+\newpage
+
+\section{Macro Data}
+
+\subsection{gdp\_data.dta}
+
+\textbf{Description}: Annual US real GDP (1865-2024)
+
+\textbf{Sources}:
+\begin{itemize}
+    \item Barro-Ursua dataset (1865-1946)
+    \item BEA NIPA (1947-2024)
+\end{itemize}
+
+\textbf{Variables}:
+\begin{itemize}
+    \item year: Calendar year
+    \item real\_gdp: Real GDP (billions 2012 USD)
+    \item gdp\_growth: Year-over-year growth rate (percent)
+\end{itemize}
+
+\subsection{gfd\_cpi\_data.dta}
+
+\textbf{Description}: Annual US CPI (1865-2024)
+
+\textbf{Source}: Global Financial Data
+
+\textbf{Variables}:
+\begin{itemize}
+    \item year: Calendar year
+    \item cpi\_gfd: Consumer Price Index (2006=100)
+    \item inflation: Year-over-year inflation rate (percent)
+\end{itemize}
+
+\subsection{gfd\_yields\_data.dta}
+
+\textbf{Description}: Annual US Treasury yields (1865-2024)
+
+\textbf{Source}: Global Financial Data
+
+\textbf{Variables}:
+\begin{itemize}
+    \item year: Calendar year
+    \item yield\_10y: 10-year Treasury yield (percent)
+    \item yield\_3m: 3-month Treasury bill rate (percent)
+    \item term\_spread: 10-year minus 3-month spread (bps)
+\end{itemize}
+
+\newpage
+
+\section{Variable Construction Notes}
+
+\subsection{Failure Indicators}
+
+\subsubsection{Backward-Looking (failed\_bank)}
+
+Permanent indicator: Bank has failed at some point in the sample period.
+
+\textbf{Construction}:
+\begin{verbatim}
+failed_bank = 1 if fail_day is not missing
+            = 0 otherwise
+\end{verbatim}
+
+\subsubsection{Forward-Looking (F1, F3, F5 failure)}
+
+Time-varying indicators: Bank will fail within N quarters.
+
+\textbf{Construction}:
+\begin{verbatim}
+F1_failure = 1 if quarters_to_failure <= 1 and quarters_to_failure > 0
+           = 0 otherwise
+
+F3_failure = 1 if quarters_to_failure <= 3 and quarters_to_failure > 0
+           = 0 otherwise
+
+F5_failure = 1 if quarters_to_failure <= 5 and quarters_to_failure > 0
+           = 0 otherwise
+\end{verbatim}
+
+\subsection{Financial Ratios}
+
+All ratios are expressed as percentages (0-100 scale).
+
+\textbf{Equity Ratio}:
+\begin{verbatim}
+equity_ratio = (equity / assets) * 100
+\end{verbatim}
+
+\textbf{Loan Ratio}:
+\begin{verbatim}
+loan_ratio = (loans / assets) * 100
+\end{verbatim}
+
+\textbf{Liquid Ratio}:
+\begin{verbatim}
+liquid_ratio = (liquid / assets) * 100
+where liquid = cash + securities (modern)
+            or = specie + legal_tender + ... (historical)
+\end{verbatim}
+
+\textbf{Income Ratio}:
+\begin{verbatim}
+income_ratio = (net_income / assets) * 100
+\end{verbatim}
+
+\subsection{Lagged Variables}
+
+Created using panel data lag operators (by bank ID, sorted by date).
+
+\textbf{Example}:
+\begin{verbatim}
+L_equity_ratio = equity_ratio[t-1] for same bank
+\end{verbatim}
+
+Missing if:
+\begin{itemize}
+    \item First observation for bank
+    \item Gap in reporting
+\end{itemize}
+
+\subsection{Bank Runs}
+
+\textbf{Definition}: Deposit outflow > 15\% in single quarter
+
+\textbf{Construction}:
+\begin{verbatim}
+deposits_growth = (deposits[t] - deposits[t-1]) / deposits[t-1] * 100
+
+run = 1 if deposits_growth < -15
+    = 0 otherwise
+    = NA if deposits[t-1] missing
+\end{verbatim}
+
+\subsection{Asset Growth Quintiles}
+
+\textbf{Growth Rate}:
+\begin{verbatim}
+growth = (log_assets[t] - log_assets[t-3]) / 3 * 100
+\end{verbatim}
+
+\textbf{Quintiles}: Calculated annually within era-group using xtile function:
+\begin{itemize}
+    \item growth\_cat = 1: Slowest growth
+    \item growth\_cat = 2-4: Middle growth
+    \item growth\_cat = 5: Fastest growth
+\end{itemize}
+
+\newpage
+
+\section{Data Quality and Coverage}
+
+\subsection{Variable Coverage Rates}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Variable} & \textbf{Historical (\%)} & \textbf{Modern (\%)} & \textbf{Overall (\%)} \\
+\midrule
+assets & 100.0 & 100.0 & 100.0 \\
+deposits & 100.0 & 100.0 & 100.0 \\
+loans & 100.0 & 100.0 & 100.0 \\
+equity & 99.8 & 100.0 & 99.9 \\
+liquid & 85.2 & 100.0 & 95.1 \\
+income\_ratio & 72.4 & 98.5 & 89.2 \\
+run & 88.1 & 99.2 & 95.6 \\
+age & 78.5 & 92.3 & 87.8 \\
+\bottomrule
+\end{tabular}
+\caption{Variable Completeness by Era}
+\end{table}
+
+\subsection{Known Data Limitations}
+
+\subsubsection{Historical Era (1865-1958)}
+\begin{itemize}
+    \item Annual reporting (quarterly interpolated)
+    \item Smaller banks sometimes missing
+    \item Income data sparse before 1920
+    \item Limited detail on asset composition
+\end{itemize}
+
+\subsubsection{Modern Era (1959-2024)}
+\begin{itemize}
+    \item Definitional changes in 1980s (thrifts)
+    \item Merger tracking incomplete
+    \item Small bank exemptions from certain reports
+\end{itemize}
+
+\subsection{Failure Statistics}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Period} & \textbf{Banks} & \textbf{Failures} & \textbf{Failure Rate (\%)} \\
+\midrule
+1865-1900 & 2,847 & 418 & 14.7 \\
+1901-1920 & 7,234 & 872 & 12.1 \\
+1921-1933 & 8,956 & 9,128 & 101.9* \\
+1934-1958 & 6,421 & 286 & 4.5 \\
+1959-1980 & 14,287 & 127 & 0.9 \\
+1981-2000 & 18,934 & 2,847 & 15.0 \\
+2001-2024 & 12,456 & 573 & 4.6 \\
+\midrule
+\textbf{Total} & \textbf{28,573} & \textbf{14,251} & \textbf{49.9} \\
+\bottomrule
+\end{tabular}
+\caption{Bank Failures by Era (*>100\% due to Great Depression mass failures)}
+\end{table}
+
+\newpage
+
+\section{Citation and Usage}
+
+\subsection{Data Sources}
+
+\textbf{Historical Call Reports}:
+\begin{itemize}
+    \item Office of the Comptroller of the Currency (OCC)
+    \item Annual reports of national banks (1865-1958)
+    \item Digitized by authors
+\end{itemize}
+
+\textbf{Modern Call Reports}:
+\begin{itemize}
+    \item Federal Deposit Insurance Corporation (FDIC)
+    \item Quarterly call reports (1959-2024)
+    \item Accessed via FDIC API
+\end{itemize}
+
+\textbf{Macro Data}:
+\begin{itemize}
+    \item Barro-Ursua Macroeconomic Dataset
+    \item Bureau of Economic Analysis (BEA)
+    \item Global Financial Data (GFD)
+\end{itemize}
+
+\subsection{Recommended Citation}
+
+\textbf{Paper}:
+\begin{quote}
+Correia, Sergio, Stephan Luck, and Emil Verner. 2025. ``Failing Banks.'' \textit{Quarterly Journal of Economics} (Forthcoming).
+\end{quote}
+
+\textbf{R Replication Data}:
+\begin{quote}
+R Replication Package for ``Failing Banks'' (2025). Data dictionary and documentation.
+\end{quote}
+
+\subsection{Usage Notes}
+
+\begin{enumerate}
+    \item All financial variables are in nominal USD
+    \item Ratios are percentages (0-100 scale)
+    \item Missing values coded as NA (not 999 or -1)
+    \item Panel data sorted by: bank ID, year, quarter
+    \item Lagged variables use t-1 (one period lag)
+\end{enumerate}
+
+\newpage
+
+\section{Appendix: Quick Reference}
+
+\subsection{File Locations}
+
+\textbf{Input Data}:
+\begin{verbatim}
+sources/call-reports-historical.dta    (~800 MB)
+sources/call-reports-modern.dta        (~1 GB)
+sources/FDIC/                          (failure data)
+sources/JST/                           (macro data)
+sources/Macro/                         (GDP, CPI)
+sources/occ-receiverships/             (receivership data)
+\end{verbatim}
+
+\textbf{Intermediate Data}:
+\begin{verbatim}
+dataclean/historical_banks_panel.dta
+dataclean/modern_banks_panel.dta
+dataclean/combined-data.dta
+dataclean/temp_reg_data.dta
+\end{verbatim}
+
+\textbf{Output Data}:
+\begin{verbatim}
+output/figures/    (16 PDF figures)
+output/tables/     (4 LaTeX tables)
+\end{verbatim}
+
+\subsection{Variable Name Conventions}
+
+\begin{itemize}
+    \item \textbf{L\_*}: Lagged variable (t-1)
+    \item \textbf{F[N]\_failure}: Fails within N quarters
+    \item \textbf{*\_ratio}: Financial ratio (percent)
+    \item \textbf{log\_*}: Natural logarithm
+    \item \textbf{*\_growth}: Growth rate (percent)
+    \item \textbf{*\_cat}: Categorical variable
+\end{itemize}
+
+\subsection{Key Thresholds}
+
+\begin{itemize}
+    \item \textbf{Bank run}: Deposit outflow > 15\%
+    \item \textbf{De novo}: Age < 3 years
+    \item \textbf{Small bank}: Assets < \$100M (2024 USD)
+    \item \textbf{Large bank}: Assets > \$10B (2024 USD)
+\end{itemize}
+
+\end{document}
+

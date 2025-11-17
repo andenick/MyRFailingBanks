@@ -1,0 +1,11 @@
+Risk_Level,Percentile,Era,Failure_Prob_3yr,Description
+Low Risk,<p50,Historical,0.015,Below median on both solvency and funding
+Medium Risk,p50-p75,Historical,0.035,Moderate risk on both dimensions
+High Risk,p75-p90,Historical,0.085,High risk on one or both dimensions
+Very High Risk,p90-p95,Historical,0.155,Very high risk on both dimensions
+Extreme Risk,>p95,Historical,0.27,Top 5% risk on both solvency and funding
+Low Risk,<p50,Modern,0.005,Below median on both solvency and funding
+Medium Risk,p50-p75,Modern,0.012,Moderate risk on both dimensions
+High Risk,p75-p90,Modern,0.035,High risk on one or both dimensions
+Very High Risk,p90-p95,Modern,0.075,Very high risk on both dimensions
+Extreme Risk,>p95,Modern,0.125,Top 5% risk on both solvency and funding

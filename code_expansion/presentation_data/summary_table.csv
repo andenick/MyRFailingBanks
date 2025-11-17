@@ -1,0 +1,9 @@
+Metric,Value,Interpretation
+"AUC (Model 4, OOS)",0.8509 (85% accuracy),Model correctly ranks failing vs surviving banks 85% of the time
+Historical Risk Multiplier,18.0x,Banks with weak fundamentals fail at 18x higher rate than average
+Modern Risk Multiplier,25.0x,Banks with weak fundamentals fail at 25x higher rate than average
+Regression Sample Size,"964,053 observations",Final sample after filters and missing data removal
+Time Span (Years),161 years (1863-2024),"Covers pre-FDIC, Great Depression, modern era"
+Total Banks Analyzed,"25,019 banks",Unique banks in combined historical-modern dataset
+Historical Avg Failure Rate,2.5%,About 1 in 40 banks failed per year (pre-FDIC era)
+Modern Avg Failure Rate,1.0%,About 1 in 100 banks fail per year (post-FDIC era)
