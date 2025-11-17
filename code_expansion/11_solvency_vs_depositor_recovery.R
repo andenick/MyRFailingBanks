@@ -10,6 +10,9 @@ library(tidyverse)
 library(here)
 library(scales)
 
+# Load Tableau color palette
+source(here::here("code_expansion", "00_tableau_colors.R"))
+
 # Set paths
 tempfiles_dir <- here::here("tempfiles")
 output_dir <- here::here("code_expansion", "presentation_outputs")
@@ -99,7 +102,7 @@ p <- ggplot(plot_data, aes(x = solvency_ratio, y = dividends)) +
     subtitle = sprintf("Correlation = %.3f. Banks with solvency ratio > 1.0 typically achieve full depositor recovery.", cor_overall),
     caption = "Source: OCC receivership records. Solvency ratio = total collections from all sources / total claims."
   ) +
-  theme_minimal(base_size = 12) +
+  theme_failing_banks() +
   theme(
     plot.title = element_text(face = "bold", size = 14, hjust = 0),
     plot.subtitle = element_text(size = 11, color = "gray30", hjust = 0),

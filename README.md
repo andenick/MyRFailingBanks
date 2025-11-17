@@ -1,22 +1,25 @@
 # Failing Banks: R Replication of Stata QJE Baseline
 
-**Version**: 10.1
+**Version**: 10.2
 **Date**: November 17, 2025
-**Status**: ✅ **100% Perfect Replication + 20 Visualizations**
+**Status**: ✅ **100% Perfect Replication + 20 Research Visualizations**
 
 ---
 
-## 🎯 **NEW in v10.0**: Comprehensive Presentation Materials
+## 🎯 **NEW in v10.2**: Standardized Research Visualizations
 
-This version adds production-ready presentation materials for conferences, teaching, and policy briefings:
+This version adds 14 new research-focused visualizations with professional Tableau color standardization:
 
-- ✨ **14 custom visualizations** (300 DPI PNG images, print-ready)
-- 📊 **PowerPoint presentation** (10 slides, ready to present)
-- 📈 **Executive dashboard** (one-page visual summary)
-- 📚 **50-page presentation guide** (complete instructions and talking points)
-- 📄 **LaTeX PDF documentation** (5 professional guides)
+- ✨ **20 total visualizations** (all 300 DPI PNG, print-ready, Tableau colors)
+- 🎨 **Color standardization**: Tableau 10 Classic palette across all outputs
+- 📊 **FDIC bank runs**: Pre vs post-1934 analysis (scripts 22-23)
+- 💹 **Fundamentals**: Assets & liabilities, failed vs non-failed (scripts 24-29)
+- 📉 **1937 Friedman critique**: Solvency vs monetary policy (script 30)
+- 💰 **Receivership analysis**: Recovery rates & asset quality (scripts 31-33)
+- 📈 **Asset growth**: By decade & crisis period (scripts 34-35)
+- 📄 **Documentation**: Complete visualization catalog
 
-See `code_expansion/` folder and `PRESENTATION_GUIDE.md` for details.
+See `VISUALIZATION_CATALOG_v10.2.md` for detailed catalog of all 20 visualizations.
 
 ---
 

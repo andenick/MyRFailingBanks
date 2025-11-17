@@ -1,6 +1,41 @@
 # Changelog: Version History
 
-## v10.1 (November 17, 2025) - CURRENT
+## v10.2 (November 17, 2025) - CURRENT
+
+**Status**: ✅ STANDARDIZED RESEARCH VISUALIZATION SUITE
+
+**New Additions**:
+- ✨ **14 new research visualizations** (scripts 22-35)
+  - FDIC bank runs analysis (2): Pre vs post-1934 incidence and dynamics
+  - Assets side fundamentals (3): Growth, size by risk, loan ratio & liquidity
+  - Liabilities side fundamentals (3): Noncore funding, leverage, deposit structure
+  - 1937 Friedman critique (1): Solvency vs reserve requirements
+  - Receivership analysis (3): Recovery comparisons, pre/post FDIC, solvency deterioration
+  - Asset growth dynamics (2): By decade and by crisis period
+- 🎨 **Tableau color standardization**: All 20 visualizations use Tableau 10 Classic palette
+- 📄 **Comprehensive documentation**: `VISUALIZATION_CATALOG_v10.2.md` (complete catalog)
+- 🔧 **Updated legacy scripts** (07-09, 11, 14, 18): Now use Tableau colors and standardized themes
+
+**Visualization Categories**:
+1. **FDIC Bank Runs** (2 new): Incidence trends, deposit outflow distributions
+2. **Assets Side** (3 new): Growth patterns, risk quintiles, liquidity analysis
+3. **Liabilities Side** (3 new): Funding structure, leverage, deposit composition
+4. **Historical Analysis** (3 new): 1937 critique, decade trends, crisis comparisons
+5. **Receivership** (3 new + 4 updated): Recovery outcomes, solvency revelation
+
+**Technical Improvements**:
+- **Color palette helper**: `00_tableau_colors.R` defines standard colors & theme
+- **Standardized theme**: `theme_failing_banks()` ensures consistent styling
+- All 20 visualizations generate 300 DPI print-ready PNG images
+- Scripts tested and validated against data
+
+**Scripts Status**:
+- ✅ **Fully functional (16)**: 07, 08, 09, 11, 14, 18, 22-35
+- 📊 **Total PNG outputs**: 20 visualization files
+
+---
+
+## v10.1 (November 17, 2025)
 
 **Status**: ✅ EXPANDED VISUALIZATION LIBRARY
 

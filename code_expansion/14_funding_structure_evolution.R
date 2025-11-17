@@ -10,6 +10,9 @@ library(tidyverse)
 library(here)
 library(scales)
 
+# Load Tableau color palette
+source(here::here("code_expansion", "00_tableau_colors.R"))
+
 # Set paths
 dataclean_dir <- here::here("dataclean")
 output_dir <- here::here("code_expansion", "presentation_outputs")
@@ -79,7 +82,7 @@ p <- ggplot(funding_data, aes(x = year, y = Share, fill = Funding_Source)) +
     subtitle = "Deposits remain dominant funding source. Noncore funding grows in modern era, equity declines.",
     caption = "Source: Combined call reports. Stacked area shows average funding composition across all banks each year."
   ) +
-  theme_minimal(base_size = 12) +
+  theme_failing_banks() +
   theme(
     plot.title = element_text(face = "bold", size = 14, hjust = 0),
     plot.subtitle = element_text(size = 11, color = "gray30", hjust = 0),

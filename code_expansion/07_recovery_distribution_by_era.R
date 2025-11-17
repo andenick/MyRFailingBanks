@@ -10,6 +10,9 @@ library(tidyverse)
 library(here)
 library(scales)
 
+# Load Tableau color palette
+source(here::here("code_expansion", "00_tableau_colors.R"))
+
 # Set paths
 tempfiles_dir <- here::here("tempfiles")
 output_dir <- here::here("code_expansion", "presentation_outputs")
@@ -76,19 +79,20 @@ p <- ggplot(recv_data, aes(x = dividends, fill = era_label)) +
     limits = c(0, 100)
   ) +
   scale_y_continuous(name = "Density") +
-  scale_fill_brewer(palette = "Set2", guide = "none") +
+  scale_fill_manual(
+    name = "Era",
+    values = era_colors,
+    guide = "none"
+  ) +
   labs(
     title = "Distribution of Depositor Recovery Rates Across Historical Eras",
     subtitle = "Percentage of deposits recovered in bank receiverships (0-100%)",
     caption = "Source: OCC receivership records (1863-2023). Each panel shows density distribution for one era."
   ) +
-  theme_minimal(base_size = 12) +
+  theme_failing_banks() +
   theme(
-    plot.title = element_text(face = "bold", size = 14, hjust = 0),
-    plot.subtitle = element_text(size = 11, color = "gray30", hjust = 0),
     strip.text = element_text(face = "bold", size = 10),
     strip.background = element_rect(fill = "gray90", color = NA),
-    panel.grid.minor = element_blank(),
     panel.spacing = unit(1, "lines")
   )
 

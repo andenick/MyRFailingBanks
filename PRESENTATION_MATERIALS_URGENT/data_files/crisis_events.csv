@@ -1,0 +1,11 @@
+Year,Event,Failure_Rate,Category
+1873,Panic of 1873,8.5,Pre-FDIC
+1893,Panic of 1893,15.2,Pre-FDIC
+1907,Panic of 1907,12.8,Pre-FDIC
+1930,First Banking Crisis,26.4,Pre-FDIC
+1931,Second Banking Crisis,31.7,Pre-FDIC
+1933,Great Depression Peak,35.2,Pre-FDIC
+1984,Continental Illinois,4.2,Post-FDIC
+1988,S&L Crisis Peak,6.8,Post-FDIC
+2008,Great Recession,2.9,Post-FDIC
+2010,Post-Crisis Peak,3.4,Post-FDIC

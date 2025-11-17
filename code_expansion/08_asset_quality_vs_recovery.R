@@ -10,6 +10,9 @@ library(tidyverse)
 library(here)
 library(scales)
 
+# Load Tableau color palette
+source(here::here("code_expansion", "00_tableau_colors.R"))
+
 # Set paths
 tempfiles_dir <- here::here("tempfiles")
 output_dir <- here::here("code_expansion", "presentation_outputs")
@@ -107,13 +110,10 @@ p <- ggplot(plot_data, aes(x = share_good * 100, y = share_collected * 100, colo
     subtitle = "Banks with higher-quality assets ('good') achieve better collection rates in receivership",
     caption = "Source: OCC receivership records. Each point represents one failed bank. Lines show linear fit by era."
   ) +
-  theme_minimal(base_size = 12) +
+  theme_failing_banks() +
   theme(
-    plot.title = element_text(face = "bold", size = 14, hjust = 0),
-    plot.subtitle = element_text(size = 11, color = "gray30", hjust = 0),
     legend.position = "bottom",
     legend.title = element_text(face = "bold", size = 10),
-    panel.grid.minor = element_blank(),
     panel.border = element_rect(color = "gray80", fill = NA, linewidth = 0.5)
   ) +
   guides(color = guide_legend(nrow = 2, override.aes = list(alpha = 1, size = 3)))

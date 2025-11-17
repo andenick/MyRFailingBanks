@@ -10,6 +10,9 @@ library(tidyverse)
 library(here)
 library(scales)
 
+# Load Tableau color palette
+source(here::here("code_expansion", "00_tableau_colors.R"))
+
 # Set paths
 tempfiles_dir <- here::here("tempfiles")
 output_dir <- here::here("code_expansion", "presentation_outputs")
@@ -107,7 +110,7 @@ p <- ggplot(summary_stats, aes(x = size_label, y = mean_recovery, fill = era_lab
     subtitle = "Average depositor recovery (%) by bank size quintile. Error bars show 95% confidence intervals.",
     caption = "Source: OCC receivership records. Banks grouped into quintiles based on assets at suspension."
   ) +
-  theme_minimal(base_size = 12) +
+  theme_failing_banks() +
   theme(
     plot.title = element_text(face = "bold", size = 14, hjust = 0),
     plot.subtitle = element_text(size = 11, color = "gray30", hjust = 0),

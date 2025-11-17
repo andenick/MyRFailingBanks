@@ -10,6 +10,9 @@ library(tidyverse)
 library(here)
 library(scales)
 
+# Load Tableau color palette
+source(here::here("code_expansion", "00_tableau_colors.R"))
+
 # Set paths
 tempfiles_dir <- here::here("tempfiles")
 output_dir <- here::here("code_expansion", "presentation_outputs")
@@ -105,7 +108,7 @@ p <- ggplot(asset_composition, aes(x = era_group, y = Share, fill = Asset_Qualit
     subtitle = "Asset classification at failure: Depression-era banks held far more 'worthless' and 'doubtful' assets",
     caption = "Source: OCC receivership records. Asset quality classifications assigned by bank examiners at time of failure."
   ) +
-  theme_minimal(base_size = 12) +
+  theme_failing_banks() +
   theme(
     plot.title = element_text(face = "bold", size = 14, hjust = 0),
     plot.subtitle = element_text(size = 11, color = "gray30", hjust = 0),
