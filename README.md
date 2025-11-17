@@ -151,7 +151,12 @@ GitHub: https://github.com/andenick/MyRFailingBanks
 
 ## License
 
-[Specify license]
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+The original research is:
+> Correia, Sergio, Stephan Luck, and Emil Verner (2025). "Failing Banks." Quarterly Journal of Economics.
+
+This replication code is provided for academic and research purposes.
 
 ---
 
