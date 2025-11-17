@@ -1,26 +1,25 @@
 # Failing Banks: R Replication of Stata QJE Baseline
 
-**Version**: 10.2
+**Version**: 10.3
 **Date**: November 17, 2025
-**Status**: ✅ **100% Perfect Replication + 20 Research Visualizations**
+**Status**: ✅ **100% Perfect Replication + 40 Research Visualizations**
 
 ---
 
-## 🎯 **NEW in v10.2**: Standardized Research Visualizations
+## 🎯 **NEW in v10.3**: Expanded Storytelling Visualizations
 
-This version adds 14 new research-focused visualizations with professional Tableau color standardization:
+This version adds 20 new story-focused visualizations to the existing 20 from v10.2:
 
-- ✨ **20 total visualizations** (all 300 DPI PNG, print-ready, Tableau colors)
-- 🎨 **Color standardization**: Tableau 10 Classic palette across all outputs
-- 📊 **FDIC bank runs**: Pre vs post-1934 analysis (scripts 22-23)
-- 💹 **Fundamentals**: Assets & liabilities, failed vs non-failed (scripts 24-29)
-- 📉 **1937 Friedman critique**: Solvency vs monetary policy (script 30)
-- 💰 **Receivership analysis**: Recovery rates & asset quality (scripts 31-33)
-- 📈 **Asset growth**: By decade & crisis period (scripts 34-35)
-- 📄 **Documentation**: Complete visualization catalog
+- ✨ **40 total visualizations** (all 300 DPI PNG, publication-ready)
+- 📅 **Time period deep dives**: National Banking Era, WWI, Great Depression sub-periods, S&L Crisis, GFC (scripts 36-40)
+- 🏦 **Pre/Post FDIC comparisons**: Fundamental stability, capital adequacy, loan portfolios, income volatility (scripts 41-45)
+- 📈 **Three main regressors**: Asset growth, income ratio, noncore funding trajectories over time (scripts 46-49) ⭐
+- 📊 **Regressor analysis**: Interactions, stability, combined effects (scripts 50-51)
+- 🔍 **Case studies**: Typical failed bank lifecycle, size-based patterns, crisis signatures, receivership prediction (scripts 52-55)
+- 🎨 **Maintained standards**: Tableau 10 Classic palette, consistent theming
+- 📄 **Documentation**: Comprehensive visualization catalog
 
-See `VISUALIZATION_CATALOG_v10.2.md` for detailed catalog of all 20 visualizations.
-
+See `VISUALIZATION_CATALOG_v10.3.md` for detailed catalog of all 40 visualizations.
 ---
 
 ## Quick Summary
