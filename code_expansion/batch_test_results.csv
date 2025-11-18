@@ -1,0 +1,80 @@
+"script_number","script_name","status","runtime_sec","png_output","error_message"
+1,"create_risk_multiplier_visual","PASS",5.4,"01_risk_multiplier_combined.png, 01_risk_multiplier_progression.png, 01_risk_multiplier_simple.png",""
+2,"create_auc_story_visual","PASS",2.1,"02_auc_progression_bars.png, 02_auc_roc_curves_comparison.png, 02_auc_story_combined.png",""
+3,"create_coefficient_story_visual","PASS",1.9,"03_coefficient_categories.png, 03_coefficient_lollipop.png, 03_coefficient_top5.png",""
+4,"create_historical_timeline_visual","PASS",3.9,"04_timeline_crisis_focus.png, 04_timeline_era_comparison.png, 04_timeline_full_160_years.png",""
+5,"create_summary_dashboard","PASS",3,"05_executive_dashboard.png, 05_one_pager_summary.png",""
+6,"create_powerpoint_presentation","PASS_NO_PNG",1.8,"",""
+7,"recovery_distribution_by_era","PASS",1,"07_recovery_distribution_by_era.png",""
+8,"asset_quality_vs_recovery","PASS",2.1,"08_asset_quality_vs_recovery.png",""
+9,"recovery_by_size_quintile","PASS",0.9,"09_recovery_by_size_quintile.png",""
+10,"time_to_full_recovery","FAIL",0.1,"","ℹ In argument: `!is.na(receivership_length)`.
+Caused by error:
+! object 'receivership_length' not found"
+11,"solvency_vs_depositor_recovery","PASS",2,"11_solvency_vs_depositor_recovery.png",""
+12,"capital_adequacy_trends","FAIL",16.4,"","ℹ In argument: `!is.na(failed)`.
+Caused by error:
+! object 'failed' not found"
+13,"liquidity_loans_tradeoff","FAIL",13.3,"","ℹ In argument: `!is.na(failed)`.
+Caused by error:
+! object 'failed' not found"
+14,"funding_structure_evolution","PASS",15.6,"14_funding_structure_evolution.png",""
+15,"profitability_vs_risk_modern","FAIL",15.3,"","ℹ In argument: `!is.na(failed)`.
+Caused by error:
+! object 'failed' not found"
+16,"growth_dynamics_failed_banks","FAIL",12.6,"","ℹ In argument: `!is.na(growth_boom)`.
+Caused by error:
+! object 'growth_boom' not found"
+17,"prewar_postwar_predictors","FAIL",5.1,"","The variable 'failed' is in the LHS of the formula but not in the data set."
+18,"great_depression_asset_composition","PASS",0.9,"18_great_depression_asset_composition.png",""
+19,"modern_loan_composition","FAIL",16.3,"","ℹ In argument: `!is.na(loans_re)`.
+Caused by error:
+! object 'loans_re' not found"
+20,"bank_runs_and_recovery","FAIL",0.4,"","Can't select columns that don't exist.
+✖ Column `deposit_outflow_q1` doesn't exist."
+21,"receivership_length_distribution","FAIL",0.1,"","ℹ In argument: `!is.na(receivership_length)`.
+Caused by error:
+! object 'receivership_length' not found"
+22,"bank_run_incidence_fdic","PASS",1.7,"22_bank_run_incidence_fdic.png",""
+23,"deposit_outflow_dynamics","PASS",2.7,"23_deposit_outflow_dynamics.png",""
+24,"asset_growth_failed_vs_nonfailed","FAIL",14.2,"","ℹ In argument: `!is.na(growth)`.
+Caused by error:
+! object 'growth' not found"
+25,"total_assets_risk_quintile","FAIL",3.9,"","ℹ In argument: `!is.na(pred_prob_F1)`.
+Caused by error:
+! object 'pred_prob_F1' not found"
+26,"loan_liquidity_failed_vs_nonfailed","PASS",20.9,"26_loan_liquidity_failed_vs_nonfailed.png",""
+27,"noncore_funding_failed_vs_nonfailed","PASS",14.3,"27_noncore_funding_failed_vs_nonfailed.png",""
+28,"leverage_dynamics_by_period","PASS",15.9,"28_leverage_dynamics_by_period.png",""
+29,"deposit_structure_evolution","PASS",17.4,"29_deposit_structure_evolution.png",""
+30,"1937_friedman_solvency_critique","FAIL",13.6,"30_1937_friedman_solvency_critique.png","Faceting variables must have at least one value."
+31,"recovery_failed_vs_nonfailed","PASS",0.9,"31_recovery_failed_vs_nonfailed.png",""
+32,"recovery_pre_post_fdic","PASS",1,"32_recovery_pre_post_fdic.png",""
+33,"post_receivership_solvency_deterioration","PASS",0.9,"33_post_receivership_solvency_deterioration.png",""
+34,"asset_growth_by_decade","FAIL",10.5,"","ℹ In argument: `!is.na(growth)`.
+Caused by error:
+! object 'growth' not found"
+35,"asset_growth_by_crisis","FAIL",15.4,"","ℹ In argument: `!is.na(growth)`.
+Caused by error:
+! object 'growth' not found"
+36,"national_banking_era","PASS",123.6,"36_national_banking_era.png",""
+36,"national_banking_era_bank_failures_1863_1904","PASS",0,"36_national_banking_era.png",""
+37,"wwi_banking","PASS",119.7,"37_wwi_banking.png",""
+38,"s&l_crisis","PASS",113.9,"38_s&l_crisis.png",""
+39,"great_depression_subperiods","PASS",14.6,"39_great_depression_subperiods.png",""
+40,"gfc_timeline","PASS",15,"40_gfc_timeline.png",""
+41,"fundamental_stability_pre_post_fdic","PASS",21.8,"41_fundamental_stability_pre_post_fdic.png",""
+42,"capital_adequacy_pre_post_fdic","PASS",26.7,"42_capital_adequacy_pre_post_fdic.png",""
+43,"failure_rate_time_series","PASS",13.9,"43_failure_rate_time_series.png",""
+44,"loan_portfolio_composition","PASS",115.8,"44_loan_portfolio_composition.png",""
+45,"income_volatility_fdic","PASS",115.3,"45_income_volatility_fdic.png",""
+46,"asset_growth_trajectory","PASS",6.3,"46_asset_growth_trajectory.png",""
+47,"income_ratio_trajectory","PASS",5.5,"47_income_ratio_trajectory.png",""
+48,"noncore_funding_trajectory","PASS",5.9,"48_noncore_funding_trajectory.png",""
+49,"three_regressors_combined","PASS",7.6,"49_three_regressors_combined.png",""
+50,"regressor_interactions","PASS",113.6,"50_regressor_interactions.png",""
+51,"regressor_stability","PASS",114.5,"51_regressor_stability.png",""
+52,"typical_failed_bank_lifecycle","PASS",9,"52_typical_failed_bank_lifecycle.png",""
+53,"size-based_failures","PASS",115.5,"53_size-based_failures.png",""
+54,"crisis_signatures","PASS",114.5,"54_crisis_signatures.png",""
+55,"receivership_prediction","PASS",102.6,"55_receivership_prediction.png",""
