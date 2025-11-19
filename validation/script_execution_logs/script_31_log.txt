@@ -1,0 +1,30 @@
+=========================================================================== 
+ Failing Banks R Replication v9.0 - Setup Complete
+ R translation of Stata QJE Replication Kit
+ =========================================================================== 
+ Project Root: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean
+ Sources:      D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/sources
+ Data Clean:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/dataclean
+ Output:       D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/output
+ Temp Files:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/tempfiles
+ =========================================================================== 
+Setup complete. Ready to execute analysis scripts.
+There were 19 warnings (use warnings() to see them)
+=========================================================================== 
+ Failing Banks R Replication v9.0 - Setup Complete
+ R translation of Stata QJE Replication Kit
+ =========================================================================== 
+ Project Root: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean
+ Sources:      D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/sources
+ Data Clean:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/dataclean
+ Output:       D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/output
+ Temp Files:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/tempfiles
+ =========================================================================== 
+Setup complete. Ready to execute analysis scripts.
+Error in eval(ei, envir) : Required data files missing:
+D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/dataclean/panel_data_final.rds
+D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/dataclean/data_for_coefplots.rds
+Calls: source -> withVisible -> eval -> eval
+In addition: Warning message:
+package 'patchwork' was built under R version 4.4.3 
+Execution halted

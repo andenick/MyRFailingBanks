@@ -1,0 +1,35 @@
+=========================================================================== 
+ Failing Banks R Replication v9.0 - Setup Complete
+ R translation of Stata QJE Replication Kit
+ =========================================================================== 
+ Project Root: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean
+ Sources:      D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/sources
+ Data Clean:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/dataclean
+ Output:       D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/output
+ Temp Files:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/tempfiles
+ =========================================================================== 
+Setup complete. Ready to execute analysis scripts.
+There were 19 warnings (use warnings() to see them)
+Loading BEA GDP data...
+  BEA data: 78 observations
+Loading Barro-Ursua macro data...
+  Using first column 'Indexes, 2006=100' as year
+  Barro data: 150 observations
+Loading JST macrohistory data...
+  JST data: 151 observations
+Merging datasets...
+  Combined data: 165 observations (1860-2024)
+Creating combined GDP series...
+  1947 ratio: 0.001864
+Creating growth rate variables...
+Saving combined macro dataset...
+01_import_GDP.R completed successfully
+  Years covered: 1860 to 2024
+  Observations: 165
+  Variables: 29
+  Saved to: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/sources/JST/jst_cpi_crisis.dta
+
+Variable summary:
+  - crisisJST present: TRUE (crisis years: 6)
+  - GDP data: 165 non-missing
+  - Loan data: 141 non-missing

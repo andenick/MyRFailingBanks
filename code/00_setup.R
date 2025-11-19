@@ -1,12 +1,11 @@
-# SETUP SCRIPT - Failing Banks R Replication Package (Stata-Style)
 # ===========================================================================
-# Replicates: common.do from QJE Stata replication kit
+# SETUP SCRIPT - Failing Banks R Replication
+# ===========================================================================
+# R translation of Stata common.do from QJE replication kit
+# Version 11.1 Definitive - Stata-Faithful Replication
 # ===========================================================================
 
-# This script is sourced by 00_master.R and sets up the environment.
-# It relies on the 'here' package to define paths relative to the project root.
-
-# Load packages
+# Load required packages
 suppressPackageStartupMessages({
     library(tidyverse)
     library(haven)
@@ -15,10 +14,15 @@ suppressPackageStartupMessages({
     library(scales)
     library(readxl)
     library(here)
+    library(pROC)          # For AUC analysis
+    library(sandwich)      # For robust standard errors
+    library(lmtest)        # For coefficient tests
 })
 
-# Define paths using here::here() - matches Stata common.do structure
-# Stata equivalent: 
+# ===========================================================================
+# DEFINE PATHS (Matching Stata common.do)
+# ===========================================================================
+# Stata equivalent:
 #   global sources "$root/sources"
 #   global data    "$root/dataclean"
 #   global temp    "$root/tempfiles"
@@ -60,24 +64,32 @@ PATHS <- list(
     temp = tempfiles_dir
 )
 
-# Display setup information
-cat(
-    strrep("=", 75), "\n",
-    "Failing Banks R Replication - Setup Complete\n",
-    strrep("=", 75), "\n",
-    sprintf("Project Root: %s\n", base_dir),
-    sprintf("Sources:      %s\n", sources_dir),
-    sprintf("Data Clean:   %s\n", dataclean_dir),
-    sprintf("Output:       %s\n", output_dir),
-    sprintf("Temp Files:   %s\n", tempfiles_dir),
-    strrep("=", 75), "\n"
-)
+# ===========================================================================
+# HELPER FUNCTIONS
+# ===========================================================================
 
-# Index expansion option
-run_index_expansion <- TRUE  # Set to FALSE to skip index expansion
-# Helper functions
+# Print formatted section headers
 print_section <- function(text) {
     cat("\n", strrep("=", 75), "\n", text, "\n", strrep("=", 75), "\n\n", sep = "")
+}
+
+print_header <- function(text) {
+    cat(sprintf("\n%s\n", text))
+}
+
+print_complete <- function(script_name) {
+    cat(sprintf("\n%s completed successfully\n", script_name))
+}
+
+# Safe max function - handles all-NA case (critical v6.0 fix)
+# R's max() returns -Inf for all-NA inputs, Stata returns missing
+# This wrapper ensures consistent behavior
+safe_max <- function(x, na.rm = TRUE) {
+    if (all(is.na(x))) {
+        return(NA_real_)
+    } else {
+        return(max(x, na.rm = na.rm))
+    }
 }
 
 # Clean data for Stata export
@@ -87,3 +99,25 @@ clean_for_stata <- function(df) {
         mutate(across(where(haven::is.labelled), haven::as_factor)) %>%
         mutate(across(where(is.factor), ~as.numeric(as.factor(.))))
 }
+
+# ===========================================================================
+# DISPLAY SETUP INFORMATION
+# ===========================================================================
+
+cat(
+    strrep("=", 75), "\n",
+    "Failing Banks R Replication v9.0 - Setup Complete\n",
+    "R translation of Stata QJE Replication Kit\n",
+    strrep("=", 75), "\n",
+    sprintf("Project Root: %s\n", base_dir),
+    sprintf("Sources:      %s\n", sources_dir),
+    sprintf("Data Clean:   %s\n", dataclean_dir),
+    sprintf("Output:       %s\n", output_dir),
+    sprintf("Temp Files:   %s\n", tempfiles_dir),
+    strrep("=", 75), "\n"
+)
+
+# Configuration options
+run_index_expansion <- TRUE  # Set to FALSE to skip index expansion
+
+message("Setup complete. Ready to execute analysis scripts.")

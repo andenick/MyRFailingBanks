@@ -1,0 +1,216 @@
+=========================================================================== 
+ Failing Banks R Replication v9.0 - Setup Complete
+ R translation of Stata QJE Replication Kit
+ =========================================================================== 
+ Project Root: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean
+ Sources:      D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/sources
+ Data Clean:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/dataclean
+ Output:       D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/output
+ Temp Files:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/tempfiles
+ =========================================================================== 
+Setup complete. Ready to execute analysis scripts.
+There were 19 warnings (use warnings() to see them)
+=========================================================================== 
+ Failing Banks R Replication v9.0 - Setup Complete
+ R translation of Stata QJE Replication Kit
+ =========================================================================== 
+ Project Root: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean
+ Sources:      D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/sources
+ Data Clean:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/dataclean
+ Output:       D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/output
+ Temp Files:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/tempfiles
+ =========================================================================== 
+Setup complete. Ready to execute analysis scripts.
+Part 1: Loading and filtering data for event study...
+  [DIAGNOSTIC] Loaded 2865624 total observations from combined-data.rds
+  [DIAGNOSTIC] Found 100179 observations in the 10-year failure window (Stata had 100,179)
+  [DIAGNOSTIC] Kept 43667 observations after filtering for last quarter (Stata had 43,667)
+  [DIAGNOSTIC] Found 25 -Inf values in 'assets' post-log (will be dropped by regression)
+Data prepared with 43667 observations (Stata had 43,667).
+Part 2: Running event study regressions...
+  [DIAGNOSTIC] Starting 60 regression loops...
+  Running: var=<assets> cond=<all>
+NOTE: 262 observations removed because of NA and infinite values (LHS: 262).
+    ... FAILED or empty model: var=<assets> cond=<all>
+  Running: var=<assets> cond=<all_data_pre>
+NOTE: 36 observations removed because of NA and infinite values (LHS: 36).
+    ... FAILED or empty model: var=<assets> cond=<all_data_pre>
+  Running: var=<assets> cond=<all_data_post>
+NOTE: 226 observations removed because of NA values (LHS: 226).
+    ... FAILED or empty model: var=<assets> cond=<all_data_post>
+  Running: var=<assets> cond=<prewar>
+NOTE: 36 observations removed because of NA and infinite values (LHS: 36).
+    ... FAILED or empty model: var=<assets> cond=<prewar>
+  Running: var=<assets> cond=<postwar>
+NOTE: 226 observations removed because of NA values (LHS: 226).
+    ... FAILED or empty model: var=<assets> cond=<postwar>
+  Running: var=<assets> cond=<national_bank>
+NOTE: 23 observations removed because of NA and infinite values (LHS: 23).
+    ... FAILED or empty model: var=<assets> cond=<national_bank>
+  Running: var=<assets> cond=<early_fed>
+NOTE: 4 observations removed because of infinite values (LHS: 4).
+    ... FAILED or empty model: var=<assets> cond=<early_fed>
+  Running: var=<assets> cond=<great_depression>
+NOTE: 9 observations removed because of NA and infinite values (LHS: 9).
+    ... FAILED or empty model: var=<assets> cond=<great_depression>
+  Running: var=<assets> cond=<modern1>
+NOTE: 97 observations removed because of NA values (LHS: 97).
+    ... FAILED or empty model: var=<assets> cond=<modern1>
+  Running: var=<assets> cond=<modern2>
+NOTE: 129 observations removed because of NA values (LHS: 129).
+Variance contained negative values in the diagonal and was 'fixed' (a la Cameron, Gelbach & Miller 2011).
+    ... FAILED or empty model: var=<assets> cond=<modern2>
+  Running: var=<assets> cond=<modern3>
+    ... FAILED or empty model: var=<assets> cond=<modern3>
+  Running: var=<assets> cond=<large>
+NOTE: 33 observations removed because of NA and infinite values (LHS: 33).
+    ... FAILED or empty model: var=<assets> cond=<large>
+  Running: var=<assets> cond=<small>
+NOTE: 23 observations removed because of NA and infinite values (LHS: 23).
+    ... FAILED or empty model: var=<assets> cond=<small>
+  Running: var=<assets> cond=<JST>
+NOTE: 8 observations removed because of NA values (LHS: 8).
+The variables 'time_to_fail_f::-9', 'time_to_fail_f::-7', 'time_to_fail_f::-5', 'time_to_fail_f::-4', 'time_to_fail_f::-3' and 'time_to_fail_f::-1' have been removed because of collinearity (see $collin.var).
+    ... FAILED or empty model: var=<assets> cond=<JST>
+  Running: var=<assets> cond=<notJST>
+NOTE: 250 observations removed because of NA and infinite values (LHS: 250).
+    ... FAILED or empty model: var=<assets> cond=<notJST>
+  Running: var=<deposits> cond=<all>
+NOTE: 355 observations removed because of NA and infinite values (LHS: 355).
+    ... FAILED or empty model: var=<deposits> cond=<all>
+  Running: var=<deposits> cond=<all_data_pre>
+NOTE: 120 observations removed because of NA and infinite values (LHS: 120).
+    ... FAILED or empty model: var=<deposits> cond=<all_data_pre>
+  Running: var=<deposits> cond=<all_data_post>
+NOTE: 235 observations removed because of NA and infinite values (LHS: 235).
+    ... FAILED or empty model: var=<deposits> cond=<all_data_post>
+  Running: var=<deposits> cond=<prewar>
+NOTE: 120 observations removed because of NA and infinite values (LHS: 120).
+    ... FAILED or empty model: var=<deposits> cond=<prewar>
+  Running: var=<deposits> cond=<postwar>
+NOTE: 235 observations removed because of NA and infinite values (LHS: 235).
+    ... FAILED or empty model: var=<deposits> cond=<postwar>
+  Running: var=<deposits> cond=<national_bank>
+NOTE: 84 observations removed because of NA and infinite values (LHS: 84).
+    ... FAILED or empty model: var=<deposits> cond=<national_bank>
+  Running: var=<deposits> cond=<early_fed>
+NOTE: 25 observations removed because of NA and infinite values (LHS: 25).
+    ... FAILED or empty model: var=<deposits> cond=<early_fed>
+  Running: var=<deposits> cond=<great_depression>
+NOTE: 10 observations removed because of NA and infinite values (LHS: 10).
+    ... FAILED or empty model: var=<deposits> cond=<great_depression>
+  Running: var=<deposits> cond=<modern1>
+NOTE: 97 observations removed because of NA values (LHS: 97).
+    ... FAILED or empty model: var=<deposits> cond=<modern1>
+  Running: var=<deposits> cond=<modern2>
+NOTE: 138 observations removed because of NA and infinite values (LHS: 138).
+Variance contained negative values in the diagonal and was 'fixed' (a la Cameron, Gelbach & Miller 2011).
+    ... FAILED or empty model: var=<deposits> cond=<modern2>
+  Running: var=<deposits> cond=<modern3>
+    ... FAILED or empty model: var=<deposits> cond=<modern3>
+  Running: var=<deposits> cond=<large>
+NOTE: 47 observations removed because of NA and infinite values (LHS: 47).
+    ... FAILED or empty model: var=<deposits> cond=<large>
+  Running: var=<deposits> cond=<small>
+NOTE: 39 observations removed because of NA and infinite values (LHS: 39).
+    ... FAILED or empty model: var=<deposits> cond=<small>
+  Running: var=<deposits> cond=<JST>
+NOTE: 8 observations removed because of NA values (LHS: 8).
+The variables 'time_to_fail_f::-9', 'time_to_fail_f::-7', 'time_to_fail_f::-5', 'time_to_fail_f::-4', 'time_to_fail_f::-3' and 'time_to_fail_f::-1' have been removed because of collinearity (see $collin.var).
+    ... FAILED or empty model: var=<deposits> cond=<JST>
+  Running: var=<deposits> cond=<notJST>
+NOTE: 340 observations removed because of NA and infinite values (LHS: 340).
+    ... FAILED or empty model: var=<deposits> cond=<notJST>
+  Running: var=<loans> cond=<all>
+NOTE: 1,118 observations removed because of NA and infinite values (LHS: 1,118).
+    ... FAILED or empty model: var=<loans> cond=<all>
+  Running: var=<loans> cond=<all_data_pre>
+NOTE: 28 observations removed because of NA and infinite values (LHS: 28).
+    ... FAILED or empty model: var=<loans> cond=<all_data_pre>
+  Running: var=<loans> cond=<all_data_post>
+NOTE: 1,090 observations removed because of NA and infinite values (LHS: 1,090).
+    ... FAILED or empty model: var=<loans> cond=<all_data_post>
+  Running: var=<loans> cond=<prewar>
+NOTE: 28 observations removed because of NA and infinite values (LHS: 28).
+    ... FAILED or empty model: var=<loans> cond=<prewar>
+  Running: var=<loans> cond=<postwar>
+NOTE: 1,090 observations removed because of NA and infinite values (LHS: 1,090).
+    ... FAILED or empty model: var=<loans> cond=<postwar>
+  Running: var=<loans> cond=<national_bank>
+NOTE: 17 observations removed because of NA and infinite values (LHS: 17).
+    ... FAILED or empty model: var=<loans> cond=<national_bank>
+  Running: var=<loans> cond=<early_fed>
+NOTE: 3 observations removed because of infinite values (LHS: 3).
+    ... FAILED or empty model: var=<loans> cond=<early_fed>
+  Running: var=<loans> cond=<great_depression>
+NOTE: 7 observations removed because of infinite values (LHS: 7).
+    ... FAILED or empty model: var=<loans> cond=<great_depression>
+  Running: var=<loans> cond=<modern1>
+NOTE: 797 observations removed because of NA values (LHS: 797).
+The variable 'time_to_fail_f::-1' has been removed because of collinearity (see $collin.var).
+    ... FAILED or empty model: var=<loans> cond=<modern1>
+  Running: var=<loans> cond=<modern2>
+NOTE: 291 observations removed because of NA and infinite values (LHS: 291).
+    ... FAILED or empty model: var=<loans> cond=<modern2>
+  Running: var=<loans> cond=<modern3>
+NOTE: 2 observations removed because of infinite values (LHS: 2).
+    ... FAILED or empty model: var=<loans> cond=<modern3>
+  Running: var=<loans> cond=<large>
+NOTE: 197 observations removed because of NA values (LHS: 197).
+    ... FAILED or empty model: var=<loans> cond=<large>
+  Running: var=<loans> cond=<small>
+NOTE: 245 observations removed because of NA and infinite values (LHS: 245).
+    ... FAILED or empty model: var=<loans> cond=<small>
+  Running: var=<loans> cond=<JST>
+NOTE: 10 observations removed because of NA and infinite values (LHS: 10).
+The variables 'time_to_fail_f::-9', 'time_to_fail_f::-7', 'time_to_fail_f::-5', 'time_to_fail_f::-4', 'time_to_fail_f::-3' and 'time_to_fail_f::-1' have been removed because of collinearity (see $collin.var).
+    ... FAILED or empty model: var=<loans> cond=<JST>
+  Running: var=<loans> cond=<notJST>
+NOTE: 1,101 observations removed because of NA and infinite values (LHS: 1,101).
+    ... FAILED or empty model: var=<loans> cond=<notJST>
+  Running: var=<liquid> cond=<all>
+NOTE: 115 observations removed because of infinite values (LHS: 115).
+    ... FAILED or empty model: var=<liquid> cond=<all>
+  Running: var=<liquid> cond=<all_data_pre>
+NOTE: 114 observations removed because of infinite values (LHS: 114).
+    ... FAILED or empty model: var=<liquid> cond=<all_data_pre>
+  Running: var=<liquid> cond=<all_data_post>
+NOTE: 1 observation removed because of infinite values (LHS: 1).
+    ... FAILED or empty model: var=<liquid> cond=<all_data_post>
+  Running: var=<liquid> cond=<prewar>
+NOTE: 114 observations removed because of infinite values (LHS: 114).
+    ... FAILED or empty model: var=<liquid> cond=<prewar>
+  Running: var=<liquid> cond=<postwar>
+NOTE: 1 observation removed because of infinite values (LHS: 1).
+    ... FAILED or empty model: var=<liquid> cond=<postwar>
+  Running: var=<liquid> cond=<national_bank>
+NOTE: 84 observations removed because of infinite values (LHS: 84).
+    ... FAILED or empty model: var=<liquid> cond=<national_bank>
+  Running: var=<liquid> cond=<early_fed>
+NOTE: 21 observations removed because of infinite values (LHS: 21).
+    ... FAILED or empty model: var=<liquid> cond=<early_fed>
+  Running: var=<liquid> cond=<great_depression>
+NOTE: 8 observations removed because of infinite values (LHS: 8).
+    ... FAILED or empty model: var=<liquid> cond=<great_depression>
+  Running: var=<liquid> cond=<modern1>
+NOTE: 1 observation removed because of infinite values (LHS: 1).
+    ... FAILED or empty model: var=<liquid> cond=<modern1>
+  Running: var=<liquid> cond=<modern2>
+    ... FAILED or empty model: var=<liquid> cond=<modern2>
+  Running: var=<liquid> cond=<modern3>
+    ... FAILED or empty model: var=<liquid> cond=<modern3>
+  Running: var=<liquid> cond=<large>
+NOTE: 18 observations removed because of infinite values (LHS: 18).
+    ... FAILED or empty model: var=<liquid> cond=<large>
+  Running: var=<liquid> cond=<small>
+NOTE: 15 observations removed because of infinite values (LHS: 15).
+    ... FAILED or empty model: var=<liquid> cond=<small>
+  Running: var=<liquid> cond=<JST>
+NOTE: 8 observations removed because of infinite values (LHS: 8).
+The variables 'time_to_fail_f::-9', 'time_to_fail_f::-7', 'time_to_fail_f::-5', 'time_to_fail_f::-4', 'time_to_fail_f::-3' and 'time_to_fail_f::-1' have been removed because of collinearity (see $collin.var).
+    ... FAILED or empty model: var=<liquid> cond=<JST>
+  Running: var=<liquid> cond=<notJST>
+NOTE: 100 observations removed because of infinite values (LHS: 100).
+    ... FAILED or empty model: var=<liquid> cond=<notJST>
+All regressions complete. Temp files saved.
+08_data_for_coefplots.R completed successfully

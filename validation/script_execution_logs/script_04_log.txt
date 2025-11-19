@@ -1,0 +1,27 @@
+=========================================================================== 
+ Failing Banks R Replication v9.0 - Setup Complete
+ R translation of Stata QJE Replication Kit
+ =========================================================================== 
+ Project Root: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean
+ Sources:      D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/sources
+ Data Clean:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/dataclean
+ Output:       D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/output
+ Temp Files:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/tempfiles
+ =========================================================================== 
+Setup complete. Ready to execute analysis scripts.
+There were 19 warnings (use warnings() to see them)
+Loading historical call reports data...
+Applying bank ID versioning for multiple receivership episodes...
+  Bank versions created: 9632 unique IDs from 14294 original bank_ids
+Processing historical bank data (Replicating Stata script)...
+
+Diagnostic: receivership_date coverage after preprocessing:
+  Non-missing: 65296 (19.4%)
+  Failed banks: 66059 (19.6%)
+  Total observations after filters: 337427
+Saving processed historical dataset...
+04_create_historical_dataset.R completed successfully
+  - Observations: 337426 (Should match Stata's 337,426)
+  - Years covered: 1863 to 1935
+  - Saved to: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/tempfiles/call-reports-historical.dta
+  - Saved to: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/tempfiles/call-reports-historical.rds

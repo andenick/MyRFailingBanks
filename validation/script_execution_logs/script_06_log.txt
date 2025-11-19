@@ -1,0 +1,44 @@
+=========================================================================== 
+ Failing Banks R Replication v9.0 - Setup Complete
+ R translation of Stata QJE Replication Kit
+ =========================================================================== 
+ Project Root: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean
+ Sources:      D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/sources
+ Data Clean:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/dataclean
+ Output:       D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/output
+ Temp Files:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/tempfiles
+ =========================================================================== 
+Setup complete. Ready to execute analysis scripts.
+There were 19 warnings (use warnings() to see them)
+=========================================================================== 
+ Failing Banks R Replication v9.0 - Setup Complete
+ R translation of Stata QJE Replication Kit
+ =========================================================================== 
+ Project Root: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean
+ Sources:      D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/sources
+ Data Clean:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/dataclean
+ Output:       D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/output
+ Temp Files:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/tempfiles
+ =========================================================================== 
+Setup complete. Ready to execute analysis scripts.
+Part 1: Loading processed historical call reports...
+Part 2: Loading and cleaning receivership data...
+Merging call data with receivership data...
+  receiverships_merged N = 2961
+  calls_temp N = 2948
+Saving receivership_dataset_tmp...
+  N = 2961 observations
+Saving historical outflows data to $data...
+Part 3: Merging historical run dummies back into main historical file...
+Part 4: Calculating and merging modern run dummies...
+06_create_outflows_receivership_data.R completed successfully
+  - Saved: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/dataclean/deposits_before_failure_historical.dta
+  - Saved: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/tempfiles/call-reports-historical-edited.dta
+  - Saved: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/dataclean/deposits_before_failure_modern.dta
+  - Overwrote: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/tempfiles/call-reports-modern.dta
+Warning message:
+There was 1 warning in `summarise()`.
+ℹ In argument: `run = max(run, na.rm = TRUE)`.
+ℹ In group 159: `bank_id = 2.0442e+10` and `year = 1994`.
+Caused by warning in `max()`:
+! no non-missing arguments to max; returning -Inf 

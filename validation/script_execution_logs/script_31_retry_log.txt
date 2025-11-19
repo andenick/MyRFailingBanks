@@ -1,0 +1,210 @@
+=========================================================================== 
+ Failing Banks R Replication v9.0 - Setup Complete
+ R translation of Stata QJE Replication Kit
+ =========================================================================== 
+ Project Root: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean
+ Sources:      D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/sources
+ Data Clean:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/dataclean
+ Output:       D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/output
+ Temp Files:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/tempfiles
+ =========================================================================== 
+Setup complete. Ready to execute analysis scripts.
+There were 19 warnings (use warnings() to see them)
+=========================================================================== 
+ Failing Banks R Replication v9.0 - Setup Complete
+ R translation of Stata QJE Replication Kit
+ =========================================================================== 
+ Project Root: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean
+ Sources:      D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/sources
+ Data Clean:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/dataclean
+ Output:       D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/output
+ Temp Files:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/tempfiles
+ =========================================================================== 
+Setup complete. Ready to execute analysis scripts.
+
+=========================================================================== 
+DIAGNOSTIC - Script 31: Combined Coefficient Plots
+=========================================================================== 
+
+1. PANEL DATA:
+   Dimensions: 2865624 rows x 131 columns
+   Failure variable: failed_bank 
+
+2. COEFPLOT DATA:
+   Dimensions: 964053 rows x 138 columns
+   Column names: age, assets, bank_id, bank_name, bills_payable, bonds_circ, brokered_dep, call_date, canonical_bank_name, capital, charter, charter_date, charter_year, city_name, days_to_failure, demand_deposits, deposits, deposits_demand, deposits_time, dt_open, due_to_banks_and_other_liabs, emergency, end_cause, end_date, end_has_receivership, equity, fail_day, failed_bank, final_year, i, insured_deposits, interbank, liquid, ln_cc, ln_ci, ln_cons, ln_fi, ln_oth, ln_re, loans, notes_nb, npl_tot, num_employees, oreo, other_liabs, otherbor_liab, quarter, quarter_number, quarters_to_failure, receivership_date, rediscounts, res_funding, resasset, resdep, run, run_alt1, run_alt2, run_alt3, securities_other, state_abbrev, surplus, surplus_profit, time_deposits, time_to_fail, total_deposits, undivided_profits, year, ytdint_exp_dep, ytdint_inc_ln, ytdllprov, ytdnetinc, cpi, crisisJST, stir, ltrate, gdp, unemp, gdp_growth_3years, tloans_growth_3years, tloans_gdp, cpi_gfd, inf_cpi_1years, inf_cpi_2years, inf_cpi_3years, inf_cpi_5years, yield_IGUSA10D, spr_baa_10ytreas, spr_aaa_10ytreas, spr_HYrail_10ytreas_aug, spr_10_2, log_age, size, size_cat, crisisBVX, liquid_ratio, leverage, equity_ratio, leverage_capital, surplus_ratio, equity_shortfall, profits_ratio, profit_shortfall, oreo_ratio, oreo_dummy, loan_ratio, loans_ratio, deposit_ratio, deposit_ratio_alt, noncore_ratio, emergency_borrowing, emerg_dummy, interbank_ratio, time_ratio, demand_ratio, income_ratio, npl_ratio, prov_ratio, int_exp_ratio, int_inc_ratio, nim, ln_cons_ratio, ln_cc_ratio, ln_ci_ratio, ln_oth_ratio, ln_fi_ratio, ln_re_ratio, deposits_time_ratio, deposits_demand_ratio, otherbor_liab_ratio, brokered_dep_ratio, insured_deposits_ratio, F1_failure, F3_failure, F5_failure, F1_failure_run, F3_failure_run, growth, growth_cat 
+   Column types:
+     - age : numeric 
+     - assets : numeric 
+     - bank_id : numeric 
+     - bank_name : character 
+     - bills_payable : numeric 
+     - bonds_circ : numeric 
+     - brokered_dep : numeric 
+     - call_date : Date 
+     - canonical_bank_name : character 
+     - capital : numeric 
+     - charter : numeric 
+     - charter_date : Date 
+     - charter_year : numeric 
+     - city_name : character 
+     - days_to_failure : numeric 
+     - demand_deposits : numeric 
+     - deposits : numeric 
+     - deposits_demand : numeric 
+     - deposits_time : numeric 
+     - dt_open : numeric 
+     - due_to_banks_and_other_liabs : numeric 
+     - emergency : numeric 
+     - end_cause : character 
+     - end_date : Date 
+     - end_has_receivership : numeric 
+     - equity : numeric 
+     - fail_day : Date 
+     - failed_bank : numeric 
+     - final_year : numeric 
+     - i : numeric 
+     - insured_deposits : numeric 
+     - interbank : numeric 
+     - liquid : numeric 
+     - ln_cc : numeric 
+     - ln_ci : numeric 
+     - ln_cons : numeric 
+     - ln_fi : numeric 
+     - ln_oth : numeric 
+     - ln_re : numeric 
+     - loans : numeric 
+     - notes_nb : numeric 
+     - npl_tot : numeric 
+     - num_employees : numeric 
+     - oreo : numeric 
+     - other_liabs : numeric 
+     - otherbor_liab : numeric 
+     - quarter : numeric 
+     - quarter_number : numeric 
+     - quarters_to_failure : numeric 
+     - receivership_date : Date 
+     - rediscounts : numeric 
+     - res_funding : numeric 
+     - resasset : numeric 
+     - resdep : numeric 
+     - run : numeric 
+     - run_alt1 : numeric 
+     - run_alt2 : numeric 
+     - run_alt3 : numeric 
+     - securities_other : numeric 
+     - state_abbrev : character 
+     - surplus : numeric 
+     - surplus_profit : numeric 
+     - time_deposits : numeric 
+     - time_to_fail : numeric 
+     - total_deposits : numeric 
+     - undivided_profits : numeric 
+     - year : numeric 
+     - ytdint_exp_dep : numeric 
+     - ytdint_inc_ln : numeric 
+     - ytdllprov : numeric 
+     - ytdnetinc : numeric 
+     - cpi : numeric 
+     - crisisJST : numeric 
+     - stir : numeric 
+     - ltrate : numeric 
+     - gdp : numeric 
+     - unemp : numeric 
+     - gdp_growth_3years : numeric 
+     - tloans_growth_3years : numeric 
+     - tloans_gdp : numeric 
+     - cpi_gfd : numeric 
+     - inf_cpi_1years : numeric 
+     - inf_cpi_2years : numeric 
+     - inf_cpi_3years : numeric 
+     - inf_cpi_5years : numeric 
+     - yield_IGUSA10D : numeric 
+     - spr_baa_10ytreas : numeric 
+     - spr_aaa_10ytreas : numeric 
+     - spr_HYrail_10ytreas_aug : numeric 
+     - spr_10_2 : numeric 
+     - log_age : numeric 
+     - size : numeric 
+     - size_cat : integer 
+     - crisisBVX : integer 
+     - liquid_ratio : numeric 
+     - leverage : numeric 
+     - equity_ratio : numeric 
+     - leverage_capital : numeric 
+     - surplus_ratio : numeric 
+     - equity_shortfall : integer 
+     - profits_ratio : numeric 
+     - profit_shortfall : numeric 
+     - oreo_ratio : numeric 
+     - oreo_dummy : integer 
+     - loan_ratio : numeric 
+     - loans_ratio : numeric 
+     - deposit_ratio : numeric 
+     - deposit_ratio_alt : numeric 
+     - noncore_ratio : numeric 
+     - emergency_borrowing : numeric 
+     - emerg_dummy : integer 
+     - interbank_ratio : numeric 
+     - time_ratio : numeric 
+     - demand_ratio : numeric 
+     - income_ratio : numeric 
+     - npl_ratio : numeric 
+     - prov_ratio : numeric 
+     - int_exp_ratio : numeric 
+     - int_inc_ratio : numeric 
+     - nim : numeric 
+     - ln_cons_ratio : numeric 
+     - ln_cc_ratio : numeric 
+     - ln_ci_ratio : numeric 
+     - ln_oth_ratio : numeric 
+     - ln_fi_ratio : numeric 
+     - ln_re_ratio : numeric 
+     - deposits_time_ratio : numeric 
+     - deposits_demand_ratio : numeric 
+     - otherbor_liab_ratio : numeric 
+     - brokered_dep_ratio : numeric 
+     - insured_deposits_ratio : numeric 
+     - F1_failure : integer 
+     - F3_failure : integer 
+     - F5_failure : integer 
+     - F1_failure_run : integer 
+     - F3_failure_run : integer 
+     - growth : numeric 
+     - growth_cat : integer 
+
+   First 5 rows:
+# A tibble: 5 × 138
+    age  assets  bank_id bank_name         bills_payable bonds_circ brokered_dep
+  <dbl>   <dbl>    <dbl> <chr>                     <dbl>      <dbl>        <dbl>
+1    80   6016. -3.44e12 ATLANTIC BANK OF…            NA         NA            0
+2     3 324111. -2.48e12 CORAL WAY NATION…            NA         NA           NA
+3     4 384623. -2.48e12 CORAL WAY NATION…            NA         NA           NA
+4    54 714295. -1.02e12 RICHMOND COUNTY …            NA         NA           NA
+5    55 782133. -1.02e12 RICHMOND COUNTY …            NA         NA           NA
+# ℹ 131 more variables: call_date <date>, canonical_bank_name <chr>,
+#   capital <dbl>, charter <dbl>, charter_date <date>, charter_year <dbl>,
+#   city_name <chr>, days_to_failure <dbl>, demand_deposits <dbl>,
+#   deposits <dbl>, deposits_demand <dbl>, deposits_time <dbl>, dt_open <dbl>,
+#   due_to_banks_and_other_liabs <dbl>, emergency <dbl>, end_cause <chr>,
+#   end_date <date>, end_has_receivership <dbl>, equity <dbl>, fail_day <date>,
+#   failed_bank <dbl>, final_year <dbl>, i <dbl>, insured_deposits <dbl>, …
+
+ =========================================================================== 
+
+Creating combined coefficient plots...
+✗ Failed to save PDF: Problem while computing aesthetics.
+ℹ Error occurred in the 1st layer.
+Caused by error:
+! object 'failure_rate' not found
+✗ Failed to save PNG: Problem while computing aesthetics.
+ℹ Error occurred in the 1st layer.
+Caused by error:
+! object 'failure_rate' not found
+31_coefplots_combined.R completed successfully
+  - Years analyzed: 1866 to 2023
+  - Total observations: 964053
+  - Combined plot created with 3 components
+  - Saved to: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/output/figures/coefplots_combined.pdf
+Warning message:
+package 'patchwork' was built under R version 4.4.3 

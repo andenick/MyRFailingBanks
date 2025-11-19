@@ -1,0 +1,1529 @@
+=========================================================================== 
+ Failing Banks R Replication v9.0 - Setup Complete
+ R translation of Stata QJE Replication Kit
+ =========================================================================== 
+ Project Root: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean
+ Sources:      D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/sources
+ Data Clean:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/dataclean
+ Output:       D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/output
+ Temp Files:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/tempfiles
+ =========================================================================== 
+Setup complete. Ready to execute analysis scripts.
+There were 19 warnings (use warnings() to see them)
+
+===========================================================================
+SCRIPT 51: AUC ANALYSIS - LINEAR PROBABILITY MODELS
+===========================================================================
+Start time: 2025-11-18 17:04:12.210691
+R version: R version 4.4.1 (2024-06-14 ucrt)
+===========================================================================
+
+--- Loading Environment ---
+=========================================================================== 
+ Failing Banks R Replication v9.0 - Setup Complete
+ R translation of Stata QJE Replication Kit
+ =========================================================================== 
+ Project Root: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean
+ Sources:      D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/sources
+ Data Clean:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/dataclean
+ Output:       D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/output
+ Temp Files:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/tempfiles
+ =========================================================================== 
+Setup complete. Ready to execute analysis scripts.
+  Loading required packages...
+  ✓ Packages loaded successfully
+
+--- Defining Variable Specifications ---
+  ✓ Variable specifications defined
+
+===========================================================================
+PART 1: DATA LOADING
+===========================================================================
+
+--- Loading Regression Data ---
+  File: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/tempfiles/temp_reg_data.dta
+  File size: 1123.6 MB
+  Reading Stata file...
+  ✓ Data loaded in 19.5 seconds
+  Observations: 964053
+  Variables: 138
+  Unique banks: 36689
+  Year range: 1866 - 2023
+  Memory: 1019.0 MB
+
+--- Cleaning Data Types ---
+  ✓ Converted growth_cat to factor
+  ✓ Data types cleaned
+
+===========================================================================
+PART 2: HISTORICAL SAMPLE REGRESSIONS (1863-1934)
+===========================================================================
+
+--- Filtering to Historical Period ---
+  Observations: 294608 (30.6% of total)
+  Banks: 12536
+  Years: 69
+  ✓ All required variables present
+
+--- Running Historical Models (7 models) ---
+
+[Historical Model 1/7] Solvency only
+
+=== Model 1: F1_failure ~ surplus_ratio + log_age ===
+  Sample period: 1863-1934
+  Minimum training window: 10 years
+  DK bandwidth: 3
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F1_failure ~ surplus_ratio + log_age
+    Computing Driscoll-Kraay standard errors...
+    Observations: 294555
+    Banks: 12536
+    Mean outcome: 0.798%
+    Coefficients: 3 parameters
+    In-sample predictions: 294555
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1863 to 1934
+      Completed through year 1880 (16941 preds so far)
+      Completed through year 1890 (41598 preds so far)
+      Completed through year 1900 (75950 preds so far)
+      Completed through year 1910 (126518 preds so far)
+      Completed through year 1920 (198342 preds so far)
+      Completed through year 1930 (270597 preds so far)
+    OOS training cycles: 62
+    Total OOS predictions: 285811
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.6834
+    ✓ AUC out-of-sample: 0.7738
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 3 rows
+    ✓ Regression table exported: regression_model_1_historical.csv
+    Prediction dataset: 294555 observations
+    ✓ Model 1 completed in 0.12 minutes
+
+[Historical Model 2/7] Funding only
+
+=== Model 2: F1_failure ~ noncore_ratio + log_age ===
+  Sample period: 1863-1934
+  Minimum training window: 10 years
+  DK bandwidth: 3
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F1_failure ~ noncore_ratio + log_age
+    Computing Driscoll-Kraay standard errors...
+    Observations: 294233
+    Banks: 12535
+    Mean outcome: 0.798%
+    Coefficients: 3 parameters
+    In-sample predictions: 294233
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1863 to 1934
+      Completed through year 1880 (16941 preds so far)
+      Completed through year 1890 (41598 preds so far)
+      Completed through year 1900 (75950 preds so far)
+      Completed through year 1910 (126518 preds so far)
+      Completed through year 1920 (198342 preds so far)
+      Completed through year 1930 (270597 preds so far)
+    OOS training cycles: 62
+    Total OOS predictions: 285489
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.8038
+    ✓ AUC out-of-sample: 0.8268
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 3 rows
+    ✓ Regression table exported: regression_model_2_historical.csv
+    Prediction dataset: 294233 observations
+    ✓ Model 2 completed in 0.12 minutes
+
+[Historical Model 3/7] Solvency × Funding interaction
+
+=== Model 3: F1_failure ~ noncore_ratio * surplus_ratio + log_age ===
+  Sample period: 1863-1934
+  Minimum training window: 10 years
+  DK bandwidth: 3
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F1_failure ~ noncore_ratio * surplus_ratio + log_age
+    Computing Driscoll-Kraay standard errors...
+    Observations: 294228
+    Banks: 12535
+    Mean outcome: 0.798%
+    Coefficients: 5 parameters
+    In-sample predictions: 294228
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1863 to 1934
+      Completed through year 1880 (16941 preds so far)
+      Completed through year 1890 (41598 preds so far)
+      Completed through year 1900 (75950 preds so far)
+      Completed through year 1910 (126518 preds so far)
+      Completed through year 1920 (198342 preds so far)
+      Completed through year 1930 (270597 preds so far)
+    OOS training cycles: 62
+    Total OOS predictions: 285484
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.8229
+    ✓ AUC out-of-sample: 0.8461
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 5 rows
+    ✓ Regression table exported: regression_model_3_historical.csv
+    Prediction dataset: 294228 observations
+    ✓ Model 3 completed in 0.11 minutes
+
+[Historical Model 4/7] Full specification
+
+=== Model 4: F1_failure ~ noncore_ratio * surplus_ratio + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years ===
+  Sample period: 1863-1934
+  Minimum training window: 10 years
+  DK bandwidth: 3
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F1_failure ~ noncore_ratio * surplus_ratio + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years
+    Computing Driscoll-Kraay standard errors...
+    Observations: 290603
+    Banks: 12428
+    Mean outcome: 0.800%
+    Coefficients: 11 parameters
+    In-sample predictions: 290603
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1863 to 1934
+      Completed through year 1880 (16941 preds so far)
+      Completed through year 1890 (41598 preds so far)
+      Completed through year 1900 (75950 preds so far)
+      Completed through year 1910 (126518 preds so far)
+      Completed through year 1920 (198342 preds so far)
+      Completed through year 1930 (270597 preds so far)
+    OOS training cycles: 62
+    Total OOS predictions: 282187
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.8642
+    ✓ AUC out-of-sample: 0.8509
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 11 rows
+    ✓ Regression table exported: regression_model_4_historical.csv
+    Prediction dataset: 290603 observations
+    ✓ Model 4 completed in 0.14 minutes
+
+[Historical Model 5/7] Bank run failures
+
+=== Model 5: F1_failure_run ~ noncore_ratio * surplus_ratio + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years ===
+  Sample period: 1880-1934
+  Minimum training window: 10 years
+  DK bandwidth: 3
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F1_failure_run ~ noncore_ratio * surplus_ratio + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years
+    Computing Driscoll-Kraay standard errors...
+    Observations: 215898
+    Banks: 9472
+    Mean outcome: 0.000%
+    Coefficients: 11 parameters
+    In-sample predictions: 215898
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1880 to 1934
+      Completed through year 1890 (5977 preds so far)
+      Completed through year 1900 (40329 preds so far)
+      Completed through year 1910 (90897 preds so far)
+      Completed through year 1920 (162721 preds so far)
+      Completed through year 1930 (234976 preds so far)
+    OOS training cycles: 45
+    Total OOS predictions: 247075
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    ⚠ Warning: Response variable has only 1 unique value(s) - cannot calculate ROC
+    Setting AUC to NA
+    Computing out-of-sample ROC curve...
+    ⚠ Warning: OOS response has only 1 unique value(s) - cannot calculate ROC
+    Setting OOS AUC to NA
+    ✓ AUC in-sample: NA
+    ✓ AUC out-of-sample: N/A
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 11 rows
+    ✓ Regression table exported: regression_model_5_historical.csv
+    Prediction dataset: 290603 observations
+    ✓ Model 5 completed in 0.08 minutes
+
+[Historical Model 7/7] 3-year failure horizon
+
+=== Model 7: F3_failure ~ noncore_ratio * surplus_ratio + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years ===
+  Sample period: 1863-1934
+  Minimum training window: 10 years
+  DK bandwidth: 3
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F3_failure ~ noncore_ratio * surplus_ratio + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years
+    Computing Driscoll-Kraay standard errors...
+    Observations: 290603
+    Banks: 12428
+    Mean outcome: 2.526%
+    Coefficients: 11 parameters
+    In-sample predictions: 290603
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1863 to 1934
+      Completed through year 1880 (16941 preds so far)
+      Completed through year 1890 (41598 preds so far)
+      Completed through year 1900 (75950 preds so far)
+      Completed through year 1910 (126518 preds so far)
+      Completed through year 1920 (198342 preds so far)
+      Completed through year 1930 (270597 preds so far)
+    OOS training cycles: 62
+    Total OOS predictions: 282187
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.7994
+    ✓ AUC out-of-sample: 0.8098
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 11 rows
+    ✓ Regression table exported: regression_model_7_historical.csv
+    Prediction dataset: 290603 observations
+    ✓ Model 7 completed in 0.15 minutes
+
+[Historical Model 8/7] 5-year failure horizon
+
+=== Model 8: F5_failure ~ noncore_ratio * surplus_ratio + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years ===
+  Sample period: 1863-1934
+  Minimum training window: 10 years
+  DK bandwidth: 3
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F5_failure ~ noncore_ratio * surplus_ratio + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years
+    Computing Driscoll-Kraay standard errors...
+    Observations: 290603
+    Banks: 12428
+    Mean outcome: 4.150%
+    Coefficients: 11 parameters
+    In-sample predictions: 290603
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1863 to 1934
+      Completed through year 1880 (16941 preds so far)
+      Completed through year 1890 (41598 preds so far)
+      Completed through year 1900 (75950 preds so far)
+      Completed through year 1910 (126518 preds so far)
+      Completed through year 1920 (198342 preds so far)
+      Completed through year 1930 (270597 preds so far)
+    OOS training cycles: 62
+    Total OOS predictions: 282187
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.7391
+    ✓ AUC out-of-sample: 0.7760
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 11 rows
+    ✓ Regression table exported: regression_model_8_historical.csv
+    Prediction dataset: 290603 observations
+    ✓ Model 8 completed in 0.14 minutes
+
+✓ Historical sample completed: 7 models in 0.9 minutes
+
+===========================================================================
+PART 3: MODERN SAMPLE REGRESSIONS (1959-2024)
+===========================================================================
+
+--- Filtering to Modern Period ---
+  Observations: 664824 (69.0% of total)
+  Banks: 24095
+  Years: 64
+
+--- Running Modern Models (7 models) ---
+
+[Modern Model 1/7] Solvency only
+
+=== Model 1: F1_failure ~ income_ratio + log_age ===
+  Sample period: 1959-2023
+  Minimum training window: 10 years
+  DK bandwidth: 3
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F1_failure ~ income_ratio + log_age
+    Computing Driscoll-Kraay standard errors...
+    Observations: 664812
+    Banks: 24094
+    Mean outcome: 0.312%
+    Coefficients: 3 parameters
+    In-sample predictions: 664812
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1959 to 2023
+      Completed through year 1970 (39703 preds so far)
+      Completed through year 1980 (178953 preds so far)
+      Completed through year 1990 (310743 preds so far)
+      Completed through year 2000 (407466 preds so far)
+      Completed through year 2010 (481382 preds so far)
+      Completed through year 2020 (540336 preds so far)
+    OOS training cycles: 55
+    Total OOS predictions: 549645
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.9506
+    ✓ AUC out-of-sample: 0.9428
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 3 rows
+    ✓ Regression table exported: regression_model_1_modern.csv
+    Prediction dataset: 664812 observations
+    ✓ Model 1 completed in 0.25 minutes
+
+[Modern Model 2/7] Funding only
+
+=== Model 2: F1_failure ~ noncore_ratio + log_age ===
+  Sample period: 1959-2023
+  Minimum training window: 10 years
+  DK bandwidth: 3
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F1_failure ~ noncore_ratio + log_age
+    Computing Driscoll-Kraay standard errors...
+    Observations: 664808
+    Banks: 24093
+    Mean outcome: 0.312%
+    Coefficients: 3 parameters
+    In-sample predictions: 664808
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1959 to 2023
+      Completed through year 1970 (39703 preds so far)
+      Completed through year 1980 (178953 preds so far)
+      Completed through year 1990 (310743 preds so far)
+      Completed through year 2000 (407466 preds so far)
+      Completed through year 2010 (481382 preds so far)
+      Completed through year 2020 (540336 preds so far)
+    OOS training cycles: 55
+    Total OOS predictions: 549641
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.8482
+    ✓ AUC out-of-sample: 0.7925
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 3 rows
+    ✓ Regression table exported: regression_model_2_modern.csv
+    Prediction dataset: 664808 observations
+    ✓ Model 2 completed in 0.25 minutes
+
+[Modern Model 3/7] Solvency × Funding interaction
+
+=== Model 3: F1_failure ~ noncore_ratio * income_ratio + log_age ===
+  Sample period: 1959-2023
+  Minimum training window: 10 years
+  DK bandwidth: 3
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F1_failure ~ noncore_ratio * income_ratio + log_age
+    Computing Driscoll-Kraay standard errors...
+    Observations: 664808
+    Banks: 24093
+    Mean outcome: 0.312%
+    Coefficients: 5 parameters
+    In-sample predictions: 664808
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1959 to 2023
+      Completed through year 1970 (39703 preds so far)
+      Completed through year 1980 (178953 preds so far)
+      Completed through year 1990 (310743 preds so far)
+      Completed through year 2000 (407466 preds so far)
+      Completed through year 2010 (481382 preds so far)
+      Completed through year 2020 (540336 preds so far)
+    OOS training cycles: 55
+    Total OOS predictions: 549641
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.9544
+    ✓ AUC out-of-sample: 0.9468
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 5 rows
+    ✓ Regression table exported: regression_model_3_modern.csv
+    Prediction dataset: 664808 observations
+    ✓ Model 3 completed in 0.29 minutes
+
+[Modern Model 4/7] Full specification
+
+=== Model 4: F1_failure ~ noncore_ratio * income_ratio + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years ===
+  Sample period: 1959-2023
+  Minimum training window: 10 years
+  DK bandwidth: 3
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F1_failure ~ noncore_ratio * income_ratio + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years
+    Computing Driscoll-Kraay standard errors...
+    Observations: 619280
+    Banks: 23287
+    Mean outcome: 0.331%
+    Coefficients: 11 parameters
+    In-sample predictions: 619280
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1959 to 2023
+      Completed through year 1970 (39703 preds so far)
+      Completed through year 1980 (178953 preds so far)
+      Completed through year 1990 (310743 preds so far)
+      Completed through year 2000 (407466 preds so far)
+      Completed through year 2010 (481382 preds so far)
+      Completed through year 2020 (540336 preds so far)
+    OOS training cycles: 55
+    Total OOS predictions: 542700
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.9541
+    ✓ AUC out-of-sample: 0.9461
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 11 rows
+    ✓ Regression table exported: regression_model_4_modern.csv
+    Prediction dataset: 619280 observations
+    ✓ Model 4 completed in 0.34 minutes
+
+[Modern Model 5/7] Bank run failures
+
+=== Model 5: F1_failure_run ~ noncore_ratio * income_ratio + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years ===
+  Sample period: 1993-2023
+  Minimum training window: 10 years
+  DK bandwidth: 3
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F1_failure_run ~ noncore_ratio * income_ratio + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years
+    Computing Driscoll-Kraay standard errors...
+    Observations: 217942
+    Banks: 14036
+    Mean outcome: 0.009%
+    Coefficients: 11 parameters
+    In-sample predictions: 217942
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1993 to 2023
+      Completed through year 2010 (65888 preds so far)
+      Completed through year 2020 (124842 preds so far)
+    OOS training cycles: 21
+    Total OOS predictions: 132063
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.9487
+    ✓ AUC out-of-sample: 0.9069
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 11 rows
+    ✓ Regression table exported: regression_model_5_modern.csv
+    Prediction dataset: 619280 observations
+    ✓ Model 5 completed in 0.09 minutes
+
+[Modern Model 7/7] 3-year failure horizon
+
+=== Model 7: F3_failure ~ noncore_ratio * income_ratio + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years ===
+  Sample period: 1959-2023
+  Minimum training window: 10 years
+  DK bandwidth: 3
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F3_failure ~ noncore_ratio * income_ratio + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years
+    Computing Driscoll-Kraay standard errors...
+    Observations: 619280
+    Banks: 23287
+    Mean outcome: 0.946%
+    Coefficients: 11 parameters
+    In-sample predictions: 619280
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1959 to 2023
+      Completed through year 1970 (39703 preds so far)
+      Completed through year 1980 (178953 preds so far)
+      Completed through year 1990 (310743 preds so far)
+      Completed through year 2000 (407466 preds so far)
+      Completed through year 2010 (481382 preds so far)
+      Completed through year 2020 (540336 preds so far)
+    OOS training cycles: 55
+    Total OOS predictions: 542700
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.8899
+    ✓ AUC out-of-sample: 0.8702
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 11 rows
+    ✓ Regression table exported: regression_model_7_modern.csv
+    Prediction dataset: 619280 observations
+    ✓ Model 7 completed in 0.33 minutes
+
+[Modern Model 8/7] 5-year failure horizon
+
+=== Model 8: F5_failure ~ noncore_ratio * income_ratio + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years ===
+  Sample period: 1959-2023
+  Minimum training window: 10 years
+  DK bandwidth: 3
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F5_failure ~ noncore_ratio * income_ratio + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years
+    Computing Driscoll-Kraay standard errors...
+    Observations: 619280
+    Banks: 23287
+    Mean outcome: 1.488%
+    Coefficients: 11 parameters
+    In-sample predictions: 619280
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1959 to 2023
+      Completed through year 1970 (39703 preds so far)
+      Completed through year 1980 (178953 preds so far)
+      Completed through year 1990 (310743 preds so far)
+      Completed through year 2000 (407466 preds so far)
+      Completed through year 2010 (481382 preds so far)
+      Completed through year 2020 (540336 preds so far)
+    OOS training cycles: 55
+    Total OOS predictions: 542700
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.8315
+    ✓ AUC out-of-sample: 0.8060
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 11 rows
+    ✓ Regression table exported: regression_model_8_modern.csv
+    Prediction dataset: 619280 observations
+    ✓ Model 8 completed in 0.34 minutes
+
+✓ Modern sample completed: 7 models in 1.9 minutes
+
+===========================================================================
+PART 4: NATIONAL BANKING ERA REGRESSIONS (1863-1904)
+===========================================================================
+
+--- Filtering to National Banking Period ---
+  Observations: 96065
+  Banks: 5701
+  Years: 39
+
+--- Running National Banking Models (7 models) ---
+
+[NB Model 1/7] Solvency
+
+=== Model 1: F1_failure ~ surplus_ratio + profit_shortfall + loan_ratio + leverage + log_age ===
+  Sample period: 1863-1904
+  Minimum training window: 10 years
+  DK bandwidth: 3
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F1_failure ~ surplus_ratio + profit_shortfall + loan_ratio + leverage + log_age
+    Computing Driscoll-Kraay standard errors...
+    Observations: 96045
+    Banks: 5701
+    Mean outcome: 0.373%
+    Coefficients: 6 parameters
+    In-sample predictions: 96045
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1863 to 1904
+      Completed through year 1880 (16941 preds so far)
+      Completed through year 1890 (41598 preds so far)
+      Completed through year 1900 (75950 preds so far)
+    OOS training cycles: 32
+    Total OOS predictions: 87301
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.7595
+    ✓ AUC out-of-sample: 0.7363
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 6 rows
+    ✓ Regression table exported: regression_model_1_historical.csv
+    Prediction dataset: 96045 observations
+    ✓ Model 1 completed in 0.03 minutes
+
+[NB Model 2/7] Funding
+
+=== Model 2: F1_failure ~ emergency_borrowing + log_age ===
+  Sample period: 1863-1904
+  Minimum training window: 10 years
+  DK bandwidth: 3
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F1_failure ~ emergency_borrowing + log_age
+    Computing Driscoll-Kraay standard errors...
+    Observations: 96045
+    Banks: 5701
+    Mean outcome: 0.373%
+    Coefficients: 3 parameters
+    In-sample predictions: 96045
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1863 to 1904
+      Completed through year 1880 (16941 preds so far)
+      Completed through year 1890 (41598 preds so far)
+      Completed through year 1900 (75950 preds so far)
+    OOS training cycles: 32
+    Total OOS predictions: 87301
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.7854
+    ✓ AUC out-of-sample: 0.7784
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 3 rows
+    ✓ Regression table exported: regression_model_2_historical.csv
+    Prediction dataset: 96045 observations
+    ✓ Model 2 completed in 0.03 minutes
+
+[NB Model 3/7] Solvency × Funding
+
+=== Model 3: F1_failure ~ emergency_borrowing * surplus_ratio + emergency_borrowing * profit_shortfall + loan_ratio + leverage + log_age ===
+  Sample period: 1863-1904
+  Minimum training window: 10 years
+  DK bandwidth: 3
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F1_failure ~ emergency_borrowing * surplus_ratio + emergency_borrowing * profit_shortfall + loan_ratio + leverage + log_age
+    Computing Driscoll-Kraay standard errors...
+    Observations: 96045
+    Banks: 5701
+    Mean outcome: 0.373%
+    Coefficients: 9 parameters
+    In-sample predictions: 96045
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1863 to 1904
+      Completed through year 1880 (16941 preds so far)
+      Completed through year 1890 (41598 preds so far)
+      Completed through year 1900 (75950 preds so far)
+    OOS training cycles: 32
+    Total OOS predictions: 87301
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.8175
+    ✓ AUC out-of-sample: 0.8065
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 9 rows
+    ✓ Regression table exported: regression_model_3_historical.csv
+    Prediction dataset: 96045 observations
+    ✓ Model 3 completed in 0.03 minutes
+
+[NB Model 4/7] Full specification
+
+=== Model 4: F1_failure ~ emergency_borrowing * surplus_ratio + emergency_borrowing * profit_shortfall + loan_ratio + leverage + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years ===
+  Sample period: 1863-1904
+  Minimum training window: 10 years
+  DK bandwidth: 3
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F1_failure ~ emergency_borrowing * surplus_ratio + emergency_borrowing * profit_shortfall + loan_ratio + leverage + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years
+    Computing Driscoll-Kraay standard errors...
+    Observations: 94593
+    Banks: 5544
+    Mean outcome: 0.370%
+    Coefficients: 15 parameters
+    In-sample predictions: 94593
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1863 to 1904
+      Completed through year 1880 (16941 preds so far)
+      Completed through year 1890 (41598 preds so far)
+      Completed through year 1900 (75950 preds so far)
+    OOS training cycles: 32
+    Total OOS predictions: 86177
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.8469
+    ✓ AUC out-of-sample: 0.8296
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 15 rows
+    ✓ Regression table exported: regression_model_4_historical.csv
+    Prediction dataset: 94593 observations
+    ✓ Model 4 completed in 0.04 minutes
+
+[NB Model 5/7] Bank runs
+
+=== Model 5: F1_failure_run ~ emergency_borrowing * surplus_ratio + emergency_borrowing * profit_shortfall + loan_ratio + leverage + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years ===
+  Sample period: 1880-1904
+  Minimum training window: 10 years
+  DK bandwidth: 3
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F1_failure_run ~ emergency_borrowing * surplus_ratio + emergency_borrowing * profit_shortfall + loan_ratio + leverage + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years
+    Computing Driscoll-Kraay standard errors...
+    Observations: 60932
+    Banks: 4221
+    Mean outcome: 0.000%
+    Coefficients: 15 parameters
+    In-sample predictions: 60932
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1880 to 1904
+      Completed through year 1890 (5977 preds so far)
+      Completed through year 1900 (40329 preds so far)
+    OOS training cycles: 15
+    Total OOS predictions: 51065
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    ⚠ Warning: Response variable has only 1 unique value(s) - cannot calculate ROC
+    Setting AUC to NA
+    Computing out-of-sample ROC curve...
+    ⚠ Warning: OOS response has only 1 unique value(s) - cannot calculate ROC
+    Setting OOS AUC to NA
+    ✓ AUC in-sample: NA
+    ✓ AUC out-of-sample: N/A
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 15 rows
+    ✓ Regression table exported: regression_model_5_historical.csv
+    Prediction dataset: 94593 observations
+    ✓ Model 5 completed in 0.02 minutes
+
+[NB Model 7/7] 3-year horizon
+
+=== Model 7: F3_failure ~ emergency_borrowing * surplus_ratio + emergency_borrowing * profit_shortfall + loan_ratio + leverage + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years ===
+  Sample period: 1863-1904
+  Minimum training window: 10 years
+  DK bandwidth: 3
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F3_failure ~ emergency_borrowing * surplus_ratio + emergency_borrowing * profit_shortfall + loan_ratio + leverage + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years
+    Computing Driscoll-Kraay standard errors...
+    Observations: 94593
+    Banks: 5544
+    Mean outcome: 1.029%
+    Coefficients: 15 parameters
+    In-sample predictions: 94593
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1863 to 1904
+      Completed through year 1880 (16941 preds so far)
+      Completed through year 1890 (41598 preds so far)
+      Completed through year 1900 (75950 preds so far)
+    OOS training cycles: 32
+    Total OOS predictions: 86177
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.7956
+    ✓ AUC out-of-sample: 0.7835
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 15 rows
+    ✓ Regression table exported: regression_model_7_historical.csv
+    Prediction dataset: 94593 observations
+    ✓ Model 7 completed in 0.04 minutes
+
+[NB Model 8/7] 5-year horizon
+
+=== Model 8: F5_failure ~ emergency_borrowing * surplus_ratio + emergency_borrowing * profit_shortfall + loan_ratio + leverage + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years ===
+  Sample period: 1863-1904
+  Minimum training window: 10 years
+  DK bandwidth: 3
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F5_failure ~ emergency_borrowing * surplus_ratio + emergency_borrowing * profit_shortfall + loan_ratio + leverage + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years
+    Computing Driscoll-Kraay standard errors...
+    Observations: 94593
+    Banks: 5544
+    Mean outcome: 1.623%
+    Coefficients: 15 parameters
+    In-sample predictions: 94593
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1863 to 1904
+      Completed through year 1880 (16941 preds so far)
+      Completed through year 1890 (41598 preds so far)
+      Completed through year 1900 (75950 preds so far)
+    OOS training cycles: 32
+    Total OOS predictions: 86177
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.7732
+    ✓ AUC out-of-sample: 0.7657
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 15 rows
+    ✓ Regression table exported: regression_model_8_historical.csv
+    Prediction dataset: 94593 observations
+    ✓ Model 8 completed in 0.04 minutes
+
+✓ National Banking completed: 7 models in 0.2 minutes
+
+===========================================================================
+PART 5: EARLY FEDERAL RESERVE REGRESSIONS (1914-1928)
+===========================================================================
+
+--- Filtering to Early Fed Period ---
+  Observations: 110521
+  Banks: 9500
+  Years: 15
+  Note: Using DK bandwidth of 2 (shorter period)
+
+--- Running Early Fed Models (7 models) ---
+
+[EF Model 1/7] Solvency
+
+=== Model 1: F1_failure ~ surplus_ratio + loan_ratio + leverage + log_age ===
+  Sample period: 1914-1928
+  Minimum training window: 10 years
+  DK bandwidth: 2
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F1_failure ~ surplus_ratio + loan_ratio + leverage + log_age
+    Computing Driscoll-Kraay standard errors...
+    Observations: 110443
+    Banks: 9500
+    Mean outcome: 0.612%
+    Coefficients: 5 parameters
+    In-sample predictions: 110443
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1914 to 1928
+    OOS training cycles: 5
+    Total OOS predictions: 37087
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.8149
+    ✓ AUC out-of-sample: 0.8158
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 5 rows
+    ✓ Regression table exported: regression_model_1_historical.csv
+    Prediction dataset: 110443 observations
+    ✓ Model 1 completed in 0.02 minutes
+
+[EF Model 2/7] Funding
+
+=== Model 2: F1_failure ~ noncore_ratio + log_age ===
+  Sample period: 1914-1928
+  Minimum training window: 10 years
+  DK bandwidth: 2
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F1_failure ~ noncore_ratio + log_age
+    Computing Driscoll-Kraay standard errors...
+    Observations: 110491
+    Banks: 9500
+    Mean outcome: 0.613%
+    Coefficients: 3 parameters
+    In-sample predictions: 110491
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1914 to 1928
+    OOS training cycles: 5
+    Total OOS predictions: 37095
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.8291
+    ✓ AUC out-of-sample: 0.8015
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 3 rows
+    ✓ Regression table exported: regression_model_2_historical.csv
+    Prediction dataset: 110491 observations
+    ✓ Model 2 completed in 0.01 minutes
+
+[EF Model 3/7] Solvency × Funding
+
+=== Model 3: F1_failure ~ noncore_ratio * surplus_ratio + loan_ratio + leverage + log_age ===
+  Sample period: 1914-1928
+  Minimum training window: 10 years
+  DK bandwidth: 2
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F1_failure ~ noncore_ratio * surplus_ratio + loan_ratio + leverage + log_age
+    Computing Driscoll-Kraay standard errors...
+    Observations: 110443
+    Banks: 9500
+    Mean outcome: 0.612%
+    Coefficients: 7 parameters
+    In-sample predictions: 110443
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1914 to 1928
+    OOS training cycles: 5
+    Total OOS predictions: 37087
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.8763
+    ✓ AUC out-of-sample: 0.8805
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 7 rows
+    ✓ Regression table exported: regression_model_3_historical.csv
+    Prediction dataset: 110443 observations
+    ✓ Model 3 completed in 0.02 minutes
+
+[EF Model 4/7] Full specification
+
+=== Model 4: F1_failure ~ noncore_ratio * surplus_ratio + loan_ratio + leverage + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years ===
+  Sample period: 1914-1928
+  Minimum training window: 10 years
+  DK bandwidth: 2
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F1_failure ~ noncore_ratio * surplus_ratio + loan_ratio + leverage + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years
+    Computing Driscoll-Kraay standard errors...
+    Observations: 109551
+    Banks: 9433
+    Mean outcome: 0.613%
+    Coefficients: 13 parameters
+    In-sample predictions: 109551
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1914 to 1928
+    OOS training cycles: 5
+    Total OOS predictions: 36848
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.8919
+    ✓ AUC out-of-sample: 0.9031
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 13 rows
+    ✓ Regression table exported: regression_model_4_historical.csv
+    Prediction dataset: 109551 observations
+    ✓ Model 4 completed in 0.02 minutes
+
+[EF Model 5/7] Bank runs
+
+=== Model 5: F1_failure_run ~ noncore_ratio * surplus_ratio + loan_ratio + leverage + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years ===
+  Sample period: 1914-1928
+  Minimum training window: 10 years
+  DK bandwidth: 2
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F1_failure_run ~ noncore_ratio * surplus_ratio + loan_ratio + leverage + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years
+    Computing Driscoll-Kraay standard errors...
+    Observations: 83820
+    Banks: 7221
+    Mean outcome: 0.000%
+    Coefficients: 13 parameters
+    In-sample predictions: 83820
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1914 to 1928
+    OOS training cycles: 5
+    Total OOS predictions: 36848
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    ⚠ Warning: Response variable has only 1 unique value(s) - cannot calculate ROC
+    Setting AUC to NA
+    Computing out-of-sample ROC curve...
+    ⚠ Warning: OOS response has only 1 unique value(s) - cannot calculate ROC
+    Setting OOS AUC to NA
+    ✓ AUC in-sample: NA
+    ✓ AUC out-of-sample: N/A
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 13 rows
+    ✓ Regression table exported: regression_model_5_historical.csv
+    Prediction dataset: 109551 observations
+    ✓ Model 5 completed in 0.01 minutes
+
+[EF Model 7/7] 3-year horizon
+
+=== Model 7: F3_failure ~ noncore_ratio * surplus_ratio + loan_ratio + leverage + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years ===
+  Sample period: 1914-1928
+  Minimum training window: 10 years
+  DK bandwidth: 2
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F3_failure ~ noncore_ratio * surplus_ratio + loan_ratio + leverage + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years
+    Computing Driscoll-Kraay standard errors...
+    Observations: 109551
+    Banks: 9433
+    Mean outcome: 2.437%
+    Coefficients: 13 parameters
+    In-sample predictions: 109551
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1914 to 1928
+    OOS training cycles: 5
+    Total OOS predictions: 36848
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.8447
+    ✓ AUC out-of-sample: 0.8136
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 13 rows
+    ✓ Regression table exported: regression_model_7_historical.csv
+    Prediction dataset: 109551 observations
+    ✓ Model 7 completed in 0.02 minutes
+
+[EF Model 8/7] 5-year horizon
+
+=== Model 8: F5_failure ~ noncore_ratio * surplus_ratio + loan_ratio + leverage + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years ===
+  Sample period: 1914-1928
+  Minimum training window: 10 years
+  DK bandwidth: 2
+
+  [Step 1/4] Running full-sample regression...
+    Formula: F5_failure ~ noncore_ratio * surplus_ratio + loan_ratio + leverage + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years
+    Computing Driscoll-Kraay standard errors...
+    Observations: 109551
+    Banks: 9433
+    Mean outcome: 5.285%
+    Coefficients: 13 parameters
+    In-sample predictions: 109551
+
+  [Step 2/4] Running rolling out-of-sample predictions...
+    Training years: 1914 to 1928
+    OOS training cycles: 5
+    Total OOS predictions: 36848
+
+  [Step 3/4] Calculating AUC metrics...
+    Computing in-sample ROC curve...
+    Computing out-of-sample ROC curve...
+    ✓ AUC in-sample: 0.7876
+    ✓ AUC out-of-sample: 0.7570
+
+  [Step 4/4] Preparing output data structures...
+    Coefficient table: 13 rows
+    ✓ Regression table exported: regression_model_8_historical.csv
+    Prediction dataset: 109551 observations
+    ✓ Model 8 completed in 0.02 minutes
+
+✓ Early Fed completed: 7 models in 0.1 minutes
+
+===========================================================================
+PART 6: GREAT DEPRESSION REGRESSIONS (1929-1934)
+===========================================================================
+
+--- Preparing Great Depression Data ---
+  Training period: 1880-1928
+  Testing period: 1929-1934
+  Full dataset: 272882 observations
+  Banks: 12231
+
+--- Running Great Depression Models (7 models) ---
+  Note: Using custom RunModelGD function
+
+[GD Model 1/7] Solvency
+
+=== GD Model 1: F1_failure ~ surplus_ratio + profit_shortfall + loan_ratio + leverage + log_age ===
+  Training period: 1880-1928
+  Testing period: 1929-1934
+
+  [Step 1/4] Running in-sample regression (test period only)...
+    Test period observations: 35086
+    Observations: 35082 | Banks: 7461 | Mean outcome: 3.526%
+
+  [Step 2/4] Running out-of-sample predictions...
+    Training on 1880-1928, predicting 1929-1934
+    Training cycles: 7
+      Year 1905: 4504 predictions
+      Year 1930: 6701 predictions
+      Year 1931: 6080 predictions
+      Year 1932: 5769 predictions
+      Year 1933: 4790 predictions
+      Year 1934: 4708 predictions
+    Total OOS predictions: 32552
+
+  [Step 3/4] Calculating AUC metrics...
+    ✓ AUC in-sample: 0.7478
+    ✓ AUC out-of-sample: 0.6360
+
+  [Step 4/4] Preparing output...
+    ✓ Regression table exported: regression_gd_model_1.csv
+    ✓ GD Model 1 completed in 0.02 minutes
+
+[GD Model 2/7] Funding
+
+=== GD Model 2: F1_failure ~ emergency_borrowing + log_age ===
+  Training period: 1880-1928
+  Testing period: 1929-1934
+
+  [Step 1/4] Running in-sample regression (test period only)...
+    Test period observations: 35086
+    Observations: 35084 | Banks: 7461 | Mean outcome: 3.526%
+
+  [Step 2/4] Running out-of-sample predictions...
+    Training on 1880-1928, predicting 1929-1934
+    Training cycles: 7
+      Year 1905: 4504 predictions
+      Year 1930: 6701 predictions
+      Year 1931: 6080 predictions
+      Year 1932: 5769 predictions
+      Year 1933: 4790 predictions
+      Year 1934: 4708 predictions
+    Total OOS predictions: 32552
+
+  [Step 3/4] Calculating AUC metrics...
+    ✓ AUC in-sample: 0.7744
+    ✓ AUC out-of-sample: 0.7310
+
+  [Step 4/4] Preparing output...
+    ✓ Regression table exported: regression_gd_model_2.csv
+    ✓ GD Model 2 completed in 0.02 minutes
+
+[GD Model 3/7] Solvency × Funding
+
+=== GD Model 3: F1_failure ~ emergency_borrowing * surplus_ratio + emergency_borrowing * profit_shortfall + loan_ratio + leverage + log_age ===
+  Training period: 1880-1928
+  Testing period: 1929-1934
+
+  [Step 1/4] Running in-sample regression (test period only)...
+    Test period observations: 35086
+    Observations: 35082 | Banks: 7461 | Mean outcome: 3.526%
+
+  [Step 2/4] Running out-of-sample predictions...
+    Training on 1880-1928, predicting 1929-1934
+    Training cycles: 7
+      Year 1905: 4504 predictions
+      Year 1930: 6701 predictions
+      Year 1931: 6080 predictions
+      Year 1932: 5769 predictions
+      Year 1933: 4790 predictions
+      Year 1934: 4708 predictions
+    Total OOS predictions: 32552
+
+  [Step 3/4] Calculating AUC metrics...
+    ✓ AUC in-sample: 0.8219
+    ✓ AUC out-of-sample: 0.7298
+
+  [Step 4/4] Preparing output...
+    ✓ Regression table exported: regression_gd_model_3.csv
+    ✓ GD Model 3 completed in 0.02 minutes
+
+[GD Model 4/7] Full specification
+
+=== GD Model 4: F1_failure ~ emergency_borrowing * surplus_ratio + emergency_borrowing * profit_shortfall + loan_ratio + leverage + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years ===
+  Training period: 1880-1928
+  Testing period: 1929-1934
+
+  [Step 1/4] Running in-sample regression (test period only)...
+    Test period observations: 35086
+    Observations: 35002 | Banks: 7450 | Mean outcome: 3.517%
+
+  [Step 2/4] Running out-of-sample predictions...
+    Training on 1880-1928, predicting 1929-1934
+    Training cycles: 7
+      Year 1905: 4504 predictions
+      Year 1930: 6701 predictions
+      Year 1931: 6080 predictions
+      Year 1932: 5769 predictions
+      Year 1933: 4790 predictions
+      Year 1934: 4708 predictions
+    Total OOS predictions: 32552
+
+  [Step 3/4] Calculating AUC metrics...
+    ✓ AUC in-sample: 0.8328
+    ✓ AUC out-of-sample: 0.7252
+
+  [Step 4/4] Preparing output...
+    ✓ Regression table exported: regression_gd_model_4.csv
+    ✓ GD Model 4 completed in 0.02 minutes
+
+[GD Model 5/7] Bank runs
+
+=== GD Model 5: F1_failure_run ~ emergency_borrowing * surplus_ratio + emergency_borrowing * profit_shortfall + loan_ratio + leverage + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years ===
+  Training period: 1880-1928
+  Testing period: 1929-1934
+
+  [Step 1/4] Running in-sample regression (test period only)...
+    Test period observations: 35086
+    Observations: 30583 | Banks: 5914 | Mean outcome: 0.000%
+
+  [Step 2/4] Running out-of-sample predictions...
+    Training on 1880-1928, predicting 1929-1934
+    Training cycles: 7
+      Year 1905: 4504 predictions
+      Year 1930: 6701 predictions
+      Year 1931: 6080 predictions
+      Year 1932: 5769 predictions
+      Year 1933: 4790 predictions
+      Year 1934: 4708 predictions
+    Total OOS predictions: 32552
+
+  [Step 3/4] Calculating AUC metrics...
+    ⚠ Warning: Test period response has only 1 unique value(s) - cannot calculate ROC
+    Setting AUC to NA
+    ⚠ Warning: OOS response variable lacks variation - cannot calculate ROC
+    ✓ AUC in-sample: NA
+
+  [Step 4/4] Preparing output...
+    ✓ Regression table exported: regression_gd_model_5.csv
+    ✓ GD Model 5 completed in 0.02 minutes
+
+[GD Model 7/7] 3-year horizon
+
+=== GD Model 7: F3_failure ~ emergency_borrowing * surplus_ratio + emergency_borrowing * profit_shortfall + loan_ratio + leverage + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years ===
+  Training period: 1880-1928
+  Testing period: 1929-1934
+
+  [Step 1/4] Running in-sample regression (test period only)...
+    Test period observations: 35086
+    Observations: 35002 | Banks: 7450 | Mean outcome: 9.894%
+
+  [Step 2/4] Running out-of-sample predictions...
+    Training on 1880-1928, predicting 1929-1934
+    Training cycles: 7
+      Year 1905: 4504 predictions
+      Year 1930: 6701 predictions
+      Year 1931: 6080 predictions
+      Year 1932: 5769 predictions
+      Year 1933: 4790 predictions
+      Year 1934: 4708 predictions
+    Total OOS predictions: 32552
+
+  [Step 3/4] Calculating AUC metrics...
+    ✓ AUC in-sample: 0.8054
+    ✓ AUC out-of-sample: 0.7027
+
+  [Step 4/4] Preparing output...
+    ✓ Regression table exported: regression_gd_model_7.csv
+    ✓ GD Model 7 completed in 0.02 minutes
+
+[GD Model 8/7] 5-year horizon
+
+=== GD Model 8: F5_failure ~ emergency_borrowing * surplus_ratio + emergency_borrowing * profit_shortfall + loan_ratio + leverage + log_age + growth_cat + gdp_growth_3years + inf_cpi_3years ===
+  Training period: 1880-1928
+  Testing period: 1929-1934
+
+  [Step 1/4] Running in-sample regression (test period only)...
+    Test period observations: 35086
+    Observations: 35002 | Banks: 7450 | Mean outcome: 12.494%
+
+  [Step 2/4] Running out-of-sample predictions...
+    Training on 1880-1928, predicting 1929-1934
+    Training cycles: 7
+      Year 1905: 4504 predictions
+      Year 1930: 6701 predictions
+      Year 1931: 6080 predictions
+      Year 1932: 5769 predictions
+      Year 1933: 4790 predictions
+      Year 1934: 4708 predictions
+    Total OOS predictions: 32552
+
+  [Step 3/4] Calculating AUC metrics...
+    ✓ AUC in-sample: 0.8066
+    ✓ AUC out-of-sample: 0.7332
+
+  [Step 4/4] Preparing output...
+    ✓ Regression table exported: regression_gd_model_8.csv
+    ✓ GD Model 8 completed in 0.02 minutes
+
+✓ Great Depression completed: 7 models in 0.1 minutes
+
+===========================================================================
+PART 7: SAVING PREDICTION FILES
+===========================================================================
+
+--- Saving Historical Predictions (1863-1934) ---
+  ✓ Model 1: 294555 predictions (RDS + DTA + CSV)
+  ✓ Model 2: 294233 predictions (RDS + DTA + CSV)
+  ✓ Model 3: 294228 predictions (RDS + DTA + CSV)
+  ✓ Model 4: 290603 predictions (RDS + DTA + CSV)
+  ✓ Model 5: 290603 predictions (RDS + DTA + CSV)
+  ⚠ Model 6: Skipped (no valid predictions)
+  ✓ Model 7: 290603 predictions (RDS + DTA + CSV)
+  ✓ Model 8: 290603 predictions (RDS + DTA + CSV)
+
+--- Saving Modern (1959-2024)) ---
+  ✓ Model 1: 664812 predictions (RDS + DTA + CSV)
+  ✓ Model 2: 664808 predictions (RDS + DTA + CSV)
+  ✓ Model 3: 664808 predictions (RDS + DTA + CSV)
+  ✓ Model 4: 619280 predictions (RDS + DTA + CSV)
+  ✓ Model 5: 619280 predictions (RDS + DTA + CSV)
+  ⚠ Model 6: Skipped (no valid predictions)
+  ✓ Model 7: 619280 predictions (RDS + DTA + CSV)
+  ✓ Model 8: 619280 predictions (RDS + DTA + CSV)
+
+--- Saving National Banking Predictions (1863-1904) ---
+  ✓ Model 1: 96045 predictions (RDS + DTA + CSV)
+  ✓ Model 2: 96045 predictions (RDS + DTA + CSV)
+  ✓ Model 3: 96045 predictions (RDS + DTA + CSV)
+  ✓ Model 4: 94593 predictions (RDS + DTA + CSV)
+  ✓ Model 5: 94593 predictions (RDS + DTA + CSV)
+  ⚠ Model 6: Skipped (no valid predictions)
+  ✓ Model 7: 94593 predictions (RDS + DTA + CSV)
+  ✓ Model 8: 94593 predictions (RDS + DTA + CSV)
+
+--- Saving Early Fed Predictions (1914-1928) ---
+  ✓ Model 1: 110443 predictions (RDS + DTA + CSV)
+  ✓ Model 2: 110491 predictions (RDS + DTA + CSV)
+  ✓ Model 3: 110443 predictions (RDS + DTA + CSV)
+  ✓ Model 4: 109551 predictions (RDS + DTA + CSV)
+  ✓ Model 5: 109551 predictions (RDS + DTA + CSV)
+  ⚠ Model 6: Skipped (no valid predictions)
+  ✓ Model 7: 109551 predictions (RDS + DTA + CSV)
+  ✓ Model 8: 109551 predictions (RDS + DTA + CSV)
+
+--- Saving Great Depression Predictions (1929-1934) ---
+  ✓ Model 1: 35082 predictions (RDS + DTA + CSV)
+  ✓ Model 2: 35084 predictions (RDS + DTA + CSV)
+  ✓ Model 3: 35082 predictions (RDS + DTA + CSV)
+  ✓ Model 4: 35002 predictions (RDS + DTA + CSV)
+  ✓ Model 5: 35002 predictions (RDS + DTA + CSV)
+  ⚠ Model 6: Skipped (no valid predictions)
+  ✓ Model 7: 35002 predictions (RDS + DTA + CSV)
+  ✓ Model 8: 35002 predictions (RDS + DTA + CSV)
+
+✓ Saved 105 prediction files in 192.9 seconds
+
+===========================================================================
+PART 8: CREATING AUC SUMMARY TABLES
+===========================================================================
+
+--- Extracting AUC Metrics ---
+  Extracting AUC metrics for Historical (1863-1934)...
+    ✓ Extracted 7 models
+  Extracting AUC metrics for Modern (1959-2024))...
+    ✓ Extracted 7 models
+  Extracting AUC metrics for National Banking (1863-1904)...
+    ✓ Extracted 7 models
+  Extracting AUC metrics for Early Fed (1914-1928)...
+    ✓ Extracted 7 models
+  Extracting AUC metrics for Great Depression (1929-1934)...
+    ✓ Extracted 7 models
+
+--- Creating Table 1 (Main Results) ---
+  ✓ Saved: table1_auc_summary.csv (1.3 KB)
+
+--- Table 1 Summary ---
+                   period model  n_obs n_banks mean_outcome auc_insample
+1  Historical (1863-1934)     1 294555   12536  0.797813651    0.6833927
+2  Historical (1863-1934)     2 294233   12535  0.797667155    0.8038473
+3  Historical (1863-1934)     3 294228   12535  0.797680710    0.8228992
+4  Historical (1863-1934)     4 290603   12428  0.800404676    0.8642135
+5  Historical (1863-1934)     5 215898    9472  0.000000000           NA
+6  Historical (1863-1934)     7 290603   12428  2.526470821    0.7994136
+7  Historical (1863-1934)     8 290603   12428  4.149991569    0.7391082
+8     Modern (1959-2024))     1 664812   24094  0.312118313    0.9506128
+9     Modern (1959-2024))     2 664808   24093  0.311819352    0.8482393
+10    Modern (1959-2024))     3 664808   24093  0.311819352    0.9544454
+11    Modern (1959-2024))     4 619280   23287  0.331029583    0.9541206
+12    Modern (1959-2024))     5 217942   14036  0.009176753    0.9486814
+13    Modern (1959-2024))     7 619280   23287  0.946421651    0.8898855
+14    Modern (1959-2024))     8 619280   23287  1.487533910    0.8314767
+     auc_oos
+1  0.7737995
+2  0.8267947
+3  0.8460730
+4  0.8509191
+5         NA
+6  0.8098000
+7  0.7759897
+8  0.9427524
+9  0.7925199
+10 0.9468095
+11 0.9461133
+12 0.9069294
+13 0.8701827
+14 0.8059843
+
+--- Creating Table B.15 (All Periods) ---
+  ✓ Saved: table_auc_all_periods.csv (3.1 KB)
+
+--- Table B.15 Summary ---
+  Total periods: 5
+  Total models: 35
+  Mean AUC in-sample: 0.8291
+  Mean AUC out-of-sample: 0.8072
+
+===========================================================================
+PART 9: CREATING ROC CURVE PLOTS (FIGURE 7)
+===========================================================================
+
+--- Creating Figure 7 Panels ---
+  Creating ROC curves for Historical (1863-1934)...
+    ✓ Saved: figure7a_roc_historical.pdf (884.2 KB)
+  Creating ROC curves for Modern (1959-2024))...
+    ✓ Saved: figure7b_roc_modern.pdf (1184.0 KB)
+
+===========================================================================
+SCRIPT 51 COMPLETED SUCCESSFULLY
+===========================================================================
+
+--- Execution Summary ---
+  Total runtime: 7.0 minutes (0.1 hours)
+  Start time: 2025-11-18 17:04:12.212664
+  End time: 2025-11-18 17:11:11.89524
+
+--- Models Run ---
+  Historical (1863-1934): 7 models
+  Modern (1959-2024)): 7 models
+  National Banking (1863-1904): 7 models
+  Early Fed (1914-1928): 7 models
+  Great Depression (1929-1934): 7 models
+  TOTAL: 35 models
+
+--- Outputs Created ---
+  Prediction files: 105 (RDS + DTA + CSV formats)
+  Regression coefficient tables: Multiple CSV files in output/tables/
+  AUC summary tables: 2 (Table 1, Table B.15) - CSV format
+  ROC curve plots: 2 (Figure 7A, Figure 7B)
+
+--- Key Files ---
+  D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/tempfiles/table1_auc_summary.csv
+  D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/tempfiles/table_auc_all_periods.csv
+  D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/output/figures/figure7a_roc_historical.pdf
+  D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/output/figures/figure7b_roc_modern.pdf
+
+--- Next Steps ---
+  → Script 52: AUC with GLM (logistic regression)
+  → Script 53: AUC by bank size quartiles
+  → Script 54: TPR/FPR curve analysis
+  → Script 55: Precision-Recall AUC
+
+===========================================================================
+

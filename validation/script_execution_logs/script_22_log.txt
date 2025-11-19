@@ -1,0 +1,60 @@
+=========================================================================== 
+ Failing Banks R Replication v9.0 - Setup Complete
+ R translation of Stata QJE Replication Kit
+ =========================================================================== 
+ Project Root: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean
+ Sources:      D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/sources
+ Data Clean:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/dataclean
+ Output:       D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/output
+ Temp Files:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/tempfiles
+ =========================================================================== 
+Setup complete. Ready to execute analysis scripts.
+There were 19 warnings (use warnings() to see them)
+`modelsummary` 2.0.0 now uses `tinytable` as its default table-drawing
+  backend. Learn more at: https://vincentarelbundock.github.io/tinytable/
+
+Revert to `kableExtra` for one session:
+
+  options(modelsummary_factory_default = 'kableExtra')
+  options(modelsummary_factory_latex = 'kableExtra')
+  options(modelsummary_factory_html = 'kableExtra')
+
+Silence this message forever:
+
+  config_modelsummary(startup_message = FALSE)
+=========================================================================== 
+ Failing Banks R Replication v9.0 - Setup Complete
+ R translation of Stata QJE Replication Kit
+ =========================================================================== 
+ Project Root: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean
+ Sources:      D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/sources
+ Data Clean:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/dataclean
+ Output:       D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/output
+ Temp Files:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/tempfiles
+ =========================================================================== 
+Setup complete. Ready to execute analysis scripts.
+Part 1: Loading data and creating growth variable...
+Part 2: Generating historical sample summary table...
+Saved: 03_tab_sumstats_prewar.tex
+Part 3: Generating modern sample summary table...
+Saved: 03_tab_sumstats_postwar.tex
+Script 22 (summary stats) completed successfully.
+Warning messages:
+1: package 'modelsummary' was built under R version 4.4.2 
+2: To compile a LaTeX document with this table, the following commands must be placed in the document preamble:
+
+\usepackage{tabularray}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{codehigh}
+\usepackage[normalem]{ulem}
+\UseTblrLibrary{booktabs}
+\UseTblrLibrary{siunitx}
+\newcommand{\tinytableTabularrayUnderline}[1]{\underline{#1}}
+\newcommand{\tinytableTabularrayStrikeout}[1]{\sout{#1}}
+\NewTableCommand{\tinytableDefineColor}[3]{\definecolor{#1}{#2}{#3}}
+
+To disable `siunitx` and prevent `modelsummary` from wrapping numeric entries in `\num{}`, call:
+
+options("modelsummary_format_numeric_latex" = "plain")
+ This warning appears once per session. 

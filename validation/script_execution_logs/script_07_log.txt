@@ -1,0 +1,75 @@
+=========================================================================== 
+ Failing Banks R Replication v9.0 - Setup Complete
+ R translation of Stata QJE Replication Kit
+ =========================================================================== 
+ Project Root: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean
+ Sources:      D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/sources
+ Data Clean:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/dataclean
+ Output:       D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/output
+ Temp Files:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/tempfiles
+ =========================================================================== 
+Setup complete. Ready to execute analysis scripts.
+There were 19 warnings (use warnings() to see them)
+=========================================================================== 
+ Failing Banks R Replication v9.0 - Setup Complete
+ R translation of Stata QJE Replication Kit
+ =========================================================================== 
+ Project Root: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean
+ Sources:      D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/sources
+ Data Clean:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/dataclean
+ Output:       D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/output
+ Temp Files:   D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/tempfiles
+ =========================================================================== 
+Setup complete. Ready to execute analysis scripts.
+===========================================================================
+SCRIPT 07: COMBINING HISTORICAL AND MODERN DATASETS
+===========================================================================
+
+Part 1: Loading historical dataset...
+  Loaded historical data: 337426 observations
+
+Part 2: Loading modern dataset...
+  Loaded modern data: 2528198 observations
+
+Part 3: Harmonizing column types...
+  Total unique columns: 71
+  Common columns: 16
+  Historical-only columns: 29
+  Modern-only columns: 26
+
+Part 4: Combining datasets...
+  Combined dataset: 2865624 observations
+  Historical: 337426 observations
+  Modern: 2528198 observations
+
+Part 4.5: Merging macro datasets...
+  ✓ Merged JST dataset (165 rows)
+  ✓ Merged CPI dataset (236 rows)
+  ✓ Merged Yields dataset (239 rows)
+
+Part 4.6: Deflating monetary variables by CPI...
+  ✓ Deflated 37 monetary variables by cpi_gfd
+
+Part 5: Variable creation and data preparation...
+  Creating basic transformations...
+  Creating ratio variables...
+  Applying outlier management...
+  ✓ Created comprehensive variable set matching Stata
+  ✓ Critical ratios: liquid_ratio, equity_ratio, loans_ratio, oreo_ratio
+  ✓ Total derived variables: ~40+
+
+Part 6: Saving combined dataset...
+  ✓ Saved RDS: combined-data.rds
+  ✓ Saved DTA: combined-data.dta
+
+Part 7: Summary statistics...
+  Year range: 1863 to 2024
+  Unique banks: 39169
+
+===========================================================================
+SCRIPT 07 COMPLETED SUCCESSFULLY
+===========================================================================
+  Combined dataset: 2865624 observations
+  Saved to: D:/Arcanum/Projects/FailingBanks/FailingBanks_v9.0_Clean/dataclean/combined-data.rds
+===========================================================================
+
