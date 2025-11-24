@@ -1,0 +1,8 @@
+cause_code,cause_category,percent_of_failures,description,examples,data_coverage
+ECON,Economic conditions,34%,External economic shocks affecting bank viability,"Crop losses, local economic depression, deflation, regional recessions",1865-1937
+LOSS,Losses,22%,Asset losses and loan defaults,Bad loans writing off to loss; securities depreciation; failed investments,1865-1937
+FRAUD,Fraud,21%,Dishonesty and criminal activity,"Embezzlement, falsified records, insider theft, defalcation by officers",1865-1937
+GOV,Governance,14%,Bad management and oversight failures,"Incompetent management, poor oversight by directors, weak internal controls",1865-1937
+EXLEND,Excessive lending,5%,Violation of lending limits and concentration,"Loans exceeding legal limits, excessive concentration in single borrower/industry",1865-1937
+RUN,Run,2%,Liquidity crisis and depositor withdrawals,"Bank runs, inability to meet withdrawal demands, liquidity shortfall",1865-1937
+OTHER,Other,1%,Miscellaneous causes,Causes not fitting other categories,1865-1937

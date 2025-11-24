@@ -1,0 +1,22 @@
+mdrm_code,item_number,variable_name,schedule,description,data_scope,notes
+RCFD2170,2170,total_assets,RC,Total Assets,Consolidated (domestic + foreign),Sum of all asset items; must equal Total Liabilities + Equity (3300)
+RCON2170,2170,total_assets_domestic,RC,Total Assets - Domestic Offices Only,Domestic only,For FFIEC 041/051 filers
+RCFN2170,2170,total_assets_foreign,RC,Total Assets - Foreign Offices Only,Foreign only,For FFIEC 031 filers with foreign offices
+RCFD2200,2200,total_deposits,RC,Total Deposits,Consolidated,From Schedule RC-E
+RCON2200,2200,total_deposits_domestic,RC,Total Deposits - Domestic Offices,Domestic only,Schedule RC-E Part I
+RCFD3210,3210,total_equity_capital,RC,Total Equity Capital,Consolidated,Total bank equity capital
+RCON3210,3210,total_equity_capital_domestic,RC,Total Equity Capital - Domestic,Domestic only,For domestic-only filers
+RCON6631,6631,noninterest_bearing_deposits,RC-E,Noninterest-bearing Deposits,Domestic only,Schedule RC-E Part I item 13.a.(1)
+RCON6636,6636,interest_bearing_deposits,RC-E,Interest-bearing Deposits,Domestic only,Schedule RC-E Part I item 13.a.(2)
+RCFN6631,6631,noninterest_bearing_deposits_foreign,RC-E,Noninterest-bearing Deposits - Foreign,Foreign only,Schedule RC-E Part II
+RCFN6636,6636,interest_bearing_deposits_foreign,RC-E,Interest-bearing Deposits - Foreign,Foreign only,Schedule RC-E Part II
+RCON1410,1410,loans_secured_by_re,RC-C,Loans Secured by Real Estate,Domestic only,Schedule RC-C Part I Item 1
+RCON1420,1420,loans_farmland,RC-C,Loans Secured by Farmland,Domestic only,Including farm residential and improvements
+RCON1460,1460,revolving_re_loans,RC-C,Revolving Open-end Loans Secured by 1-4 Family,Domestic only,Home equity lines of credit
+RCONF158,F158,construction_1_4_family,RC-C,1-4 Family Residential Construction Loans,Domestic only,Schedule RC-C Part I Item 1.a.(1)
+RCONF159,F159,other_construction_land,RC-C,Other Construction and Land Development Loans,Domestic only,Schedule RC-C Part I Item 1.a.(2)
+RIAD4340,4340,net_income,RI,Net Income (Loss),Income statement,Schedule RI Item 14 - Net income attributable to bank
+RIAD4301,4301,total_interest_income,RI,Total Interest Income,Income statement,Schedule RI interest income section
+RIAD4074,4074,interest_income_loans,RI,Interest and Fee Income on Loans,Income statement,Component of total interest income
+RIAD4230,4230,interest_income_securities,RI,Interest Income on Securities,Income statement,Component of total interest income
+RIAD4093,4093,interest_expense_deposits,RI,Interest Expense on Deposits,Income statement,Interest paid on deposit liabilities
