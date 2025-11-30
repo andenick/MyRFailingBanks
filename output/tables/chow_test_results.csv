@@ -1,0 +1,2 @@
+test,null_hypothesis,f_statistic,df1,df2,p_value,conclusion,n_pre2000,n_post2000,rss_pooled,rss_unrestricted
+Chow Test,No structural break at year 2000,827.8867798167689,5,664798,0,REJECT H0: Structural break confirmed,506344,158464,1802.7873768380007,1791.6315963384309

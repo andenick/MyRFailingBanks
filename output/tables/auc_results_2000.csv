@@ -1,0 +1,13 @@
+"spec","spec_name","model_type","auc","n_obs"
+1,"Model 1: Solvency Only","lpm",0.958408871431972,158466
+2,"Model 2: Funding Only","lpm",0.887686805560275,158464
+3,"Model 3: Solvency x Funding Interaction","lpm",0.965190241654426,158464
+4,"Model 4: Full with Growth Controls","lpm",0.965308679311648,156098
+1,"Model 1: Solvency Only","logit",0.949474188296909,158466
+2,"Model 2: Funding Only","logit",0.888927922443787,158464
+3,"Model 3: Solvency x Funding Interaction","logit",0.960410706697851,158464
+4,"Model 4: Full with Growth Controls","logit",0.966418873395617,156098
+1,"Model 1: Solvency Only","probit",0.957326085869998,158466
+2,"Model 2: Funding Only","probit",0.889456584177753,158464
+3,"Model 3: Solvency x Funding Interaction","probit",0.96578094240404,158464
+4,"Model 4: Full with Growth Controls","probit",0.969721740874636,156098
